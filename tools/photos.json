@@ -25,7 +25,13 @@
    "Denver, Colorado"
   ],
   "story": "Libor Alois Schlesinger (1806–1893): the barricades of Prague",
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   13,
+   100,
+   80
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/benesch/anna-rypka-and-libor-schlesinger-couple-portrait.png",
@@ -40,7 +46,13 @@
    "Denver, Colorado"
   ],
   "story": "Libor Alois Schlesinger (1806–1893): the barricades of Prague",
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   12,
+   100,
+   80
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/benesch/anna-rypka-schlesinger-portrait.jpg",
@@ -152,7 +164,13 @@
    "Piñon, Colorado"
   ],
   "story": "Joseph Benesch (1830–1917) and Julia Schlesinger: four months on the plains",
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   36,
+   100,
+   64
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/benesch/joseph-benesch-with-grandchildren.png",
@@ -166,7 +184,13 @@
    "Piñon, Colorado"
   ],
   "story": "Joseph Benesch (1830–1917) and Julia Schlesinger: four months on the plains",
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   36,
+   100,
+   63
+  ]
  },
  {
   "file": "family-tree-audit/documents/1915-julia-benesch-headstone-roselawn-pueblo.jpg",
@@ -251,7 +275,13 @@
    "Denver, Colorado"
   ],
   "story": null,
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   25,
+   100,
+   74
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/white/donald-white-yearbook-1.png",
@@ -265,7 +295,13 @@
    "Denver, Colorado"
   ],
   "story": null,
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   31,
+   100,
+   67
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/mcclenathan/john-mcclenathan-and-wife.jpg",
@@ -293,7 +329,13 @@
    "Amity, Washington Co., Pennsylvania"
   ],
   "story": "The McClenathans and the Vandykes of Amity, Pennsylvania",
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   33,
+   100,
+   67
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/coulson/coulson-cemetery.png",
@@ -307,7 +349,13 @@
    "West Nottingham, Cecil Co., Maryland"
   ],
   "story": "The McClenathans and the Vandykes of Amity, Pennsylvania",
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   35,
+   100,
+   65
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/coulson/thomas-coulson-tc-1763-stone.png",
@@ -321,7 +369,13 @@
    "West Nottingham, Cecil Co., Maryland"
   ],
   "story": "The McClenathans and the Vandykes of Amity, Pennsylvania",
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   31,
+   100,
+   63
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/coulson/john-coulson-1669-1708-headstone.png",
@@ -335,10 +389,16 @@
    "Sandiacre, Derbyshire, England"
   ],
   "story": null,
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   33,
+   100,
+   62
+  ]
  },
  {
-  "file": "family-tree-audit/documents/photos/dalrymple/george-w-dalrymple-family-porch-photos.png",
+  "file": "family-tree-audit/documents/ancestry-media-2026-11-20/50.png",
   "caption": "George W. Dalrymple (Jane Dalrymple's nephew) and family",
   "people": [
    "Jane Dalrymple",
@@ -350,17 +410,29 @@
    "Washington County, Pennsylvania"
   ],
   "story": "The Buckinghams: a colonel, a cloth factory, and a DAR line",
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   55,
+   25,
+   98,
+   47
+  ]
  },
  {
-  "file": "family-tree-audit/documents/photos/blake/seth-elizabeth-blake-grave-site.png",
+  "file": "family-tree-audit/documents/ancestry-media-2026-11-20/15.png",
   "caption": "Seth Elizabeth Blake's grave site",
   "people": [
    "Seth Elizabeth Blake"
   ],
   "place": null,
   "story": null,
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   33,
+   100,
+   67
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/hoover/mildred-hoover-baby-cropped.jpg",
@@ -406,7 +478,7 @@
   "kind": "portrait"
  },
  {
-  "file": "family-tree-audit/documents/photos/robards/thornwood-gate-1847-jessamine-ky.png",
+  "file": "family-tree-audit/documents/ancestry-media-2026-11-20/39.png",
   "caption": "The gate at Thornwood, the Robards house built in 1847, Jessamine County, Kentucky",
   "people": [
    "Otho Singleton Robards"
@@ -417,7 +489,13 @@
    "Thornwood, Jessamine County, Kentucky"
   ],
   "story": "The Robards: a Revolutionary sergeant, a sheriff, and a house called Thornwood",
-  "kind": "place"
+  "kind": "place",
+  "crop": [
+   0,
+   30,
+   100,
+   70
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/pitts/labeled-elizabeth-todd-rogers-pitts.png",
@@ -431,21 +509,13 @@
    "Scott County, Kentucky"
   ],
   "story": "The Pitts family: a young widow and a family still being traced",
-  "kind": "portrait"
- },
- {
-  "file": "family-tree-audit/documents/photos/bodine/e-bodine-headstone.png",
-  "caption": "E. Bodine headstone",
-  "people": [
-   "Eliza Bodine"
-  ],
-  "place": [
-   37.57,
-   -85.25,
-   "Marion County, Kentucky"
-  ],
-  "story": "Uncle Daniel Everhart and \"the prettiest home in the county\"",
-  "kind": "grave"
+  "kind": "portrait",
+  "crop": [
+   0,
+   9,
+   100,
+   81
+  ]
  },
  {
   "file": "family-tree-audit/documents/koetter/1901-1912-henry-lisette-koetter-headstone-friedens.jpg",
@@ -474,10 +544,16 @@
    "St. Louis, Missouri"
   ],
   "story": "Henry Koetter: off the boat and into the Union army",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   20,
+   33,
+   84,
+   66
+  ]
  },
  {
-  "file": "family-tree-audit/documents/photos/koetter/melvin-robards-koetter-army-air-forces.png",
+  "file": "family-tree-audit/documents/ancestry-media-2026-11-20/45.png",
   "caption": "Melvin Robards Koetter, WWII Army Air Forces",
   "people": [
    "Melvin J Koetter"
@@ -488,7 +564,13 @@
    "St. Louis, Missouri"
   ],
   "story": null,
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   4,
+   29,
+   100,
+   62
+  ]
  },
  {
   "file": "family-tree-audit/documents/mueller/robert-j-mueller-jr-newspaper-photo.jpg",
@@ -586,7 +668,13 @@
    "Baltimore, Maryland"
   ],
   "story": "Col. Charles W. Raphun (1842–1903) and his aunt who knew Poe",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   0,
+   25,
+   100,
+   85
+  ]
  },
  {
   "file": "family-tree-audit/karman-side/docs/1844-08-14-boston-messenger-charles-b-raphun-military-funeral.png",
@@ -600,7 +688,13 @@
    "Philadelphia, Pennsylvania"
   ],
   "story": "Corporal Charles B. Raphun (about 1816–1844)",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   0,
+   30,
+   100,
+   84
+  ]
  },
  {
   "file": "family-tree-audit/karman-side/docs/1875-05-18-baltimore-american-francis-hb-boyd-death-notice-full.png",
@@ -614,7 +708,13 @@
    "Baltimore, Maryland"
   ],
   "story": "The Boyds",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   0,
+   27,
+   100,
+   84
+  ]
  },
  {
   "file": "family-tree-audit/karman-side/docs/1865-04-13-baltimore-wecker-francis-hb-boyd-draft-substitute.png",
@@ -628,7 +728,13 @@
    "Baltimore, Maryland"
   ],
   "story": "The Boyds",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   0,
+   26,
+   100,
+   85
+  ]
  },
  {
   "file": "family-tree-audit/karman-side/docs/1899-02-michael-deveney-death-notice-baltimore.png",
@@ -642,7 +748,13 @@
    "Baltimore, Maryland"
   ],
   "story": "Michael and Bridget Deveney, and the Grogans of Lancashire",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   0,
+   2,
+   100,
+   91
+  ]
  },
  {
   "file": "family-tree-audit/karman-side/docs/karmann-weber-2026-11-21/1939-john-karmann-death-cert-baltimore-closeup.png",
@@ -656,7 +768,13 @@
    "Baltimore, Maryland"
   ],
   "story": "John Karmann (1856–1939) and Anna Weber",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   0,
+   12,
+   100,
+   94
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/karman/george-irene-karman-headstone.png",
@@ -671,7 +789,13 @@
    "Baltimore, Maryland"
   ],
   "story": "George Karmann (1891–1976), druggist",
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   32,
+   100,
+   70
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/eck/christopher-eck-headstone.png",
@@ -685,7 +809,13 @@
    "Harford County, Maryland"
   ],
   "story": "Delone Eck and her parents, Christopher and Elizabeth",
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   22,
+   100,
+   74
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/eck/elizabeth-eck-headstone.png",
@@ -699,7 +829,13 @@
    "Harford County, Maryland"
   ],
   "story": "Delone Eck and her parents, Christopher and Elizabeth",
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   17,
+   100,
+   76
+  ]
  },
  {
   "file": "family-tree-audit/karman-side/docs/1896-04-10-elizabeth-eck-obituary-aegis.png",
@@ -713,7 +849,13 @@
    "Bel Air, Harford Co., Maryland"
   ],
   "story": "Delone Eck and her parents, Christopher and Elizabeth",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   0,
+   25,
+   100,
+   84
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/carter/george-w-carter-sr-1852-1932-grave-chester-cem.png",
@@ -727,7 +869,13 @@
    "Chester Cemetery, Chestertown, Maryland"
   ],
   "story": "Three George Washington Carters",
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   32,
+   100,
+   65
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/carter/george-w-carter-III-1916-1985-grave.png",
@@ -741,7 +889,13 @@
    "Kent County, Maryland"
   ],
   "story": "Three George Washington Carters",
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   34,
+   100,
+   69
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/passwater/nettie-m-passwater-carter-1877-1944-grave.png",
@@ -755,21 +909,13 @@
    "Kent County, Maryland"
   ],
   "story": "Three George Washington Carters",
-  "kind": "grave"
- },
- {
-  "file": "family-tree-audit/karman-side/docs/1957-08-08-queen-annes-passwater-reunion-carter-crop.jpg",
-  "caption": "The Passwater family reunion, Queen Anne's County, 1957",
-  "people": [
-   "Nettie Mae Passwater"
-  ],
-  "place": [
-   39.04,
-   -76.08,
-   "Queen Anne's County, Maryland"
-  ],
-  "story": "James E. Passwaters (1844–1921), Union soldier",
-  "kind": "record"
+  "kind": "grave",
+  "crop": [
+   0,
+   32,
+   100,
+   66
+  ]
  },
  {
   "file": "family-tree-audit/karman-side/docs/1921-james-e-passwaters-death-certificate.png",
@@ -785,7 +931,13 @@
    "Queen Anne's County, Maryland"
   ],
   "story": "James E. Passwaters (1844–1921), Union soldier",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   2,
+   17,
+   92,
+   41
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/glanding/mary-l-hunter-glanding-headstone.png",
@@ -799,10 +951,16 @@
    "Greensboro, Caroline Co., Maryland"
   ],
   "story": "The Glandings and the Hunters of Caroline County",
-  "kind": "grave"
+  "kind": "grave",
+  "crop": [
+   0,
+   32,
+   100,
+   66
+  ]
  },
  {
-  "file": "family-tree-audit/documents/photos/koetter/melvin-j-koetter-portrait.png",
+  "file": "family-tree-audit/documents/ancestry-media-2026-11-20/46.png",
   "caption": "Melvin J. Koetter",
   "people": [
    "Melvin J Koetter"
@@ -813,7 +971,13 @@
    "St. Louis, Missouri"
   ],
   "story": null,
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   28,
+   100,
+   76
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/white/theodore-r-white-jr-fraternity-yearbook.png",
@@ -827,7 +991,13 @@
    "Denver, Colorado"
   ],
   "story": null,
-  "kind": "portrait"
+  "kind": "portrait",
+  "crop": [
+   0,
+   29,
+   100,
+   64
+  ]
  },
  {
   "file": "family-tree-audit/documents/photos/dalrymple/george-w-dalrymple-notes-bank-note-and-couple.png",
@@ -841,6 +1011,12 @@
    "Washington County, Pennsylvania"
   ],
   "story": "The Buckinghams: a colonel, a cloth factory, and a DAR line",
-  "kind": "record"
+  "kind": "record",
+  "crop": [
+   0,
+   14,
+   100,
+   86
+  ]
  }
 ]

@@ -214,14 +214,31 @@ note(f'Stories: {len(stories)}')
 # ---------- photos ----------
 from PIL import Image, ImageOps
 os.makedirs(os.path.join(OUT, 'img/full'), exist_ok=True); os.makedirs(os.path.join(OUT, 'img/thumb'), exist_ok=True)
+def crop_photo(im, box):
+    """Crop to box (percent l,t,r,b), then trim flat black/white/gray bars left at the edges."""
+    if not box: return im
+    w, h = im.size
+    im = im.crop((int(w * box[0] / 100), int(h * box[1] / 100), int(w * box[2] / 100), int(h * box[3] / 100)))
+    g = im.convert('L'); w, h = g.size; px = g.load()
+    def flat(vals):
+        m = sum(vals) / len(vals)
+        return sum((v - m) ** 2 for v in vals) / len(vals) < 40
+    row = lambda y: [px[x, y] for x in range(0, w, 3)]
+    col = lambda x: [px[x, y] for y in range(0, h, 3)]
+    t, b, l, r = 0, h - 1, 0, w - 1
+    while t < h * 0.3 and flat(row(t)): t += 1
+    while b > h * 0.7 and flat(row(b)): b -= 1
+    while l < w * 0.3 and flat(col(l)): l += 1
+    while r > w * 0.7 and flat(col(r)): r -= 1
+    return im.crop((l, t, r + 1, b + 1))
 photos, used = [], set()
 for n, c in enumerate(PHOTO_CFG):
     f = os.path.join(PROJ, c['file']); used.add(os.path.normpath(f))
     if not os.path.exists(f): note(f'Photo missing: {c["file"]}'); continue
     base = re.sub(r'[^a-z0-9-]', '-', os.path.splitext(os.path.basename(f))[0].lower())[:70]
     fp, tp = f'img/full/{base}.jpg', f'img/thumb/{base}.jpg'
-    if not os.path.exists(os.path.join(OUT, tp)) or os.path.getmtime(f) > os.path.getmtime(os.path.join(OUT, tp)):
-        im = ImageOps.exif_transpose(Image.open(f)).convert('RGB')
+    if True:  # always regenerate (crops may change)
+        im = crop_photo(ImageOps.exif_transpose(Image.open(f)).convert('RGB'), c.get('crop'))
         big = im.copy(); big.thumbnail((1400, 1400)); big.save(os.path.join(OUT, fp), quality=82)
         ImageOps.fit(im, (160, 160), centering=(0.5, 0.3)).save(os.path.join(OUT, tp), quality=80)
     ph = {'id': 'p%02d' % n, 'src': fp, 'thumb': tp, 'caption': c['caption'], 'people': [r for r in (resolve(x) for x in c['people']) if r], 'kind': c['kind']}
