@@ -309,21 +309,48 @@
   }
 
   // ---------- story drawer ----------
-  function openStory(sid, heroPhoto) {
+  let tour = null;
+  function startTour(pid) {
+    const p = pid && P[pid];
+    const list = (p ? (p.stories || []) : D.stories.filter(s => onSide(s.side)).map(s => s.id));
+    if (!list.length) return;
+    tour = { list, i: 0, pid: p ? pid : null };
+    openStory(list[0], null, true);
+  }
+  function tourStep(d) {
+    if (!tour) return;
+    tour.i = Math.max(0, Math.min(tour.list.length - 1, tour.i + d));
+    openStory(tour.list[tour.i], null, true);
+  }
+  function flyToStory(s) {
+    const lls = s.places.map(p => p.ll).filter(ll => ll && ll[0] > -80);
+    if (!lls.length) return;
+    if (isMobile()) return;
+    const b = L.latLngBounds(lls);
+    const opts = { paddingTopLeft: [40, 40], paddingBottomRight: [$('#drawer').offsetWidth + 40, 60], maxZoom: 9, duration: 1.6 };
+    if (lls.length === 1 || b.getNorthEast().distanceTo(b.getSouthWest()) < 5000) map.flyTo(lls[0], 9, { duration: 1.6 });
+    else map.flyToBounds(b, opts);
+  }
+  function openStory(sid, heroPhoto, fromTour) {
     const s = S[sid]; if (!s) return;
+    if (!fromTour) tour = null;
     const hero = heroPhoto ? PH[heroPhoto] : (s.photos[0] ? PH[s.photos[0]] : null);
     const others = s.photos.filter(id => !hero || id !== hero.id);
     if (!$('#drawer').hidden && $('#drawer-body .storylist')) listScroll = $('#drawer').scrollTop;
     const backPid = selected && (P[selected].stories || []).length ? selected : null;
     let h = `<button class="back" data-list="${backPid || 'all'}">← ${backPid ? 'Stories about ' + esc(P[backPid].name) : 'All stories'}</button>`;
+    const tourBar = tour ? `<div class="tourbar"><button class="tour-nav" data-tour="-1" ${tour.i ? '' : 'disabled'}>‹ Previous</button><span>Tour · ${tour.i + 1} of ${tour.list.length}</span><button class="tour-nav" data-tour="1" ${tour.i < tour.list.length - 1 ? '' : 'disabled'}>Next story ›</button></div>` : '';
+    h += tourBar;
     h += `<p class="grp">${esc(s.group || '')}</p><h2>${esc(s.title)}</h2>`;
     if (hero) h += `<img class="hero" src="${hero.src}" data-photo="${hero.id}" alt="${esc(hero.caption)}"><p class="herocap">${esc(hero.caption)}</p>`;
     if (others.length) h += `<div class="thumbs">${others.map(id => `<img src="${PH[id].thumb}" data-photo="${id}" alt="${esc(PH[id].caption)}" title="${esc(PH[id].caption)}">`).join('')}</div>`;
     if (s.people.length) h += `<div class="people">${s.people.map(id => `<button class="chip" data-person="${id}">${esc(P[id].name)}</button>`).join('')}</div>`;
     if (s.places.length) h += `<div class="places">📍 ${s.places.map((pl, i) => `<a data-goto="${pl.ll}">${esc(pl.label)}</a>`).join(' · ')}</div>`;
     h += `<div class="story">${s.html}</div>`;
+    if (tour) h += tourBar.replace('class="tourbar"', 'class="tourbar end"');
     $('#drawer-body').innerHTML = h; $('#drawer').hidden = false; $('#drawer').scrollTop = 0;
     setHash('story=' + sid);
+    if (fromTour) flyToStory(s);
   }
   let listScroll = 0, listFor = null;
   function storyList(pid) {
@@ -332,6 +359,7 @@
     listFor = p ? pid : null;
     let h = `<h2>${p ? 'Stories about ' + esc(p.name) : side === 'all' ? 'All stories' : (side === 'W' ? 'White' : 'Karman') + ' side stories'}</h2>`;
     if (p) h += `<p class="grp"><a class="backlink" data-list="all">See all stories</a></p>`;
+    if (items.length > 1) h += `<button class="tour-start" data-tourstart="${p ? pid : ''}">▶ Take the guided tour (${items.length} stories)</button>`;
     h += `<ul class="storylist">`; let g = null;
     items.forEach(s => {
       if (s.group !== g) { g = s.group; h += `<li class="grp-h">${esc(g)}</li>`; }
@@ -340,7 +368,7 @@
     $('#drawer-body').innerHTML = h + '</ul>'; $('#drawer').hidden = false; $('#drawer').scrollTop = 0;
     setHash(selected ? 'person=' + encodeURIComponent(selected) : '');
   }
-  function closeDrawer() { $('#drawer').hidden = true; setHash(selected ? 'person=' + encodeURIComponent(selected) : ''); }
+  function closeDrawer() { tour = null; $('#drawer').hidden = true; setHash(selected ? 'person=' + encodeURIComponent(selected) : ''); }
   $('#drawer-close').onclick = closeDrawer;
 
   // ---------- photos ----------
@@ -355,7 +383,7 @@
   const closeLb = () => { $('#lightbox').hidden = true; };
   $('#lb-close').onclick = closeLb;
   $('#lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') closeLb(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('#lightbox').hidden) closeLb(); else if (!$('#drawer').hidden) closeDrawer(); } });
+  document.addEventListener('keydown', e => { if (tour && $('#lightbox').hidden && !e.target.closest('input') && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { tourStep(e.key === 'ArrowRight' ? 1 : -1); return; } if (e.key === 'Escape') { if (!$('#lightbox').hidden) closeLb(); else if (!$('#drawer').hidden) closeDrawer(); } });
 
   // ---------- global link handling ----------
   document.addEventListener('click', e => {
@@ -380,7 +408,10 @@
   });
   $('#btn-stories').onclick = () => storyList();
   $('#drawer').addEventListener('click', e => {
+    const t = e.target.closest('[data-tour],[data-tourstart]');
+    if (t) { if (t.dataset.tour) tourStep(+t.dataset.tour); else startTour(t.dataset.tourstart || null); return; }
     const b = e.target.closest('[data-list]'); if (!b) return;
+    tour = null;
     const back = b.classList.contains('back');
     const pid = b.dataset.list === 'all' ? null : b.dataset.list;
     const keep = back && listFor === pid;

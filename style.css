@@ -124,3 +124,10 @@ ul.tree.root{padding-left:4px}
 .arrow{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:11px solid #b5562b}
 @media (max-width:760px){.timeline input[type=range]{width:38vw}.legend{font-size:.72rem}}
 #filter-banner[hidden],#person-card[hidden],#drawer[hidden]{display:none}
+
+#drawer .tour-start{display:block;width:100%;margin:4px 0 12px;padding:9px 12px;border:0;border-radius:8px;background:var(--accent);color:#fff;font-size:.95rem;cursor:pointer}
+#drawer .tour-start:hover{filter:brightness(1.1)}
+#drawer .tourbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;padding:6px 8px;background:var(--sel);border-radius:8px;font-size:.85rem}
+#drawer .tourbar.end{margin:18px 0 6px}
+#drawer .tour-nav{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer;color:var(--accent);font-size:.85rem}
+#drawer .tour-nav:disabled{opacity:.4;cursor:default}
