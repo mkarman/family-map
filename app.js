@@ -51,7 +51,7 @@
       return d;
     }
   });
-  new Legend({ position: 'bottomleft' }).addTo(map);
+  new Legend({ position: 'topleft' }).addTo(map);
 
   // ---------- migrations ----------
   const birthOf = p => (p.events || []).find(e => e.ll && /Born|Christened|Baptized/.test(e.t) && e.prec !== 'country');
