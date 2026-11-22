@@ -241,7 +241,9 @@ for n, c in enumerate(PHOTO_CFG):
         im = crop_photo(ImageOps.exif_transpose(Image.open(f)).convert('RGB'), c.get('crop'))
         big = im.copy(); big.thumbnail((1400, 1400)); big.save(os.path.join(OUT, fp), quality=82)
         ImageOps.fit(im, (160, 160), centering=(0.5, 0.3)).save(os.path.join(OUT, tp), quality=80)
-    ph = {'id': 'p%02d' % n, 'src': fp, 'thumb': tp, 'caption': c['caption'], 'people': [r for r in (resolve(x) for x in c['people']) if r], 'kind': c['kind']}
+    import hashlib
+    ver = hashlib.md5(open(os.path.join(OUT, fp), 'rb').read()).hexdigest()[:8]
+    ph = {'id': 'p%02d' % n, 'src': fp + '?v=' + ver, 'thumb': tp + '?v=' + ver, 'caption': c['caption'], 'people': [r for r in (resolve(x) for x in c['people']) if r], 'kind': c['kind']}
     if c.get('place'): ph['ll'] = c['place'][:2]; ph['place'] = c['place'][2]
     st = next((s for s in stories if s['title'] == c.get('story')), None)
     if st: ph['story'] = st['id']; st['photos'].append(ph['id'])
