@@ -20,7 +20,7 @@
     'US topo maps (USGS)': L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'USGS The National Map' })
   };
   const saved = localStorage.getItem('basemap');
-  (bases[saved] || bases['Street (OpenStreetMap)']).addTo(map);
+  (bases[saved] || bases['Topographic (Esri)']).addTo(map);
   L.control.layers(bases, null, { position: 'topright', collapsed: true }).addTo(map);
   map.on('baselayerchange', e => { try { localStorage.setItem('basemap', e.name); } catch (_) {} });
   const clusterOpts = { maxClusterRadius: 45, showCoverageOnHover: false, spiderfyOnMaxZoom: true };
