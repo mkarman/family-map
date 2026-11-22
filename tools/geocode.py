@@ -1,6 +1,8 @@
 import json, re, unicodedata
-CITIES=json.load(open('/root/geo/cities.json'))
-US=json.load(open('/root/geo/uscounties.json'))
+import os
+GEO=os.environ.get('FAMILY_MAP_GEO','/mnt/project-files/family-map-site/geo')
+CITIES=json.load(open(os.path.join(GEO,'cities.json')))
+US=json.load(open(os.path.join(GEO,'uscounties.json')))
 ABBR={'AL':'Alabama','AK':'Alaska','AZ':'Arizona','AR':'Arkansas','CA':'California','CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia','HI':'Hawaii','ID':'Idaho','IL':'Illinois','IN':'Indiana','IA':'Iowa','KS':'Kansas','KY':'Kentucky','LA':'Louisiana','ME':'Maine','MD':'Maryland','MA':'Massachusetts','MI':'Michigan','MN':'Minnesota','MS':'Mississippi','MO':'Missouri','MT':'Montana','NE':'Nebraska','NV':'Nevada','NH':'New Hampshire','NJ':'New Jersey','NM':'New Mexico','NY':'New York','NC':'North Carolina','ND':'North Dakota','OH':'Ohio','OK':'Oklahoma','OR':'Oregon','PA':'Pennsylvania','RI':'Rhode Island','SC':'South Carolina','SD':'South Dakota','TN':'Tennessee','TX':'Texas','UT':'Utah','VT':'Vermont','VA':'Virginia','WA':'Washington','WV':'West Virginia','WI':'Wisconsin','WY':'Wyoming','DC':'District of Columbia'}
 ST2AB={v.lower():k for k,v in ABBR.items()}
 EXTRA_ST={'va':'VA','n.c.':'NC','ky':'KY','in.':'IN','in':'IN','tn':'TN','ga':'GA','mo':'MO','md':'MD','pa':'PA','nj':'NJ','co':'CO','ar':'AR','ny':'NY','oh':'OH'}
@@ -11,9 +13,8 @@ def norm(s):
     return re.sub(r'[^a-z0-9 ]','',s.replace('-',' ').replace('st.','saint').replace('st ','saint ')).strip()
 IDX={}
 for c in CITIES:
-    for nm in [c[0]]+[a for a in c[6].split(',') if a][:0]:
-        IDX.setdefault((norm(nm),c[1]),[]).append(c)
-OVR=json.load(open('/root/build/place_overrides.json')) if __import__('os').path.exists('/root/build/place_overrides.json') else {}
+    IDX.setdefault((norm(c[0]),c[1]),[]).append(c)
+OVR=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'place_overrides.json')))
 SUB={'Auraria':[34.457,-84.019],'Nimburg':[48.110,7.776],'Teningen':[48.129,7.811],'Bahlingen':[48.121,7.740],'Riverside Cem':[39.785,-104.963],'Pinon, Pueblo':[38.43,-104.60],'Piñon':[38.43,-104.60],'Roselawn Cem':[38.236,-104.587],'Fulks Run':[38.645,-78.913],'Aynho':[51.996,-1.240]}
 JUNK=re.compile(r'(cemetery|cemetary|cem\.|church|meeting|ward|district|precinct|tract|subdivision|same |street|parish|hundred|http|memorial|unknown|probated|^of\b|^\d)',re.I)
 def city(tok,cc,adm=None):
