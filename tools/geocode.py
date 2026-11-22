@@ -15,6 +15,7 @@ IDX={}
 for c in CITIES:
     IDX.setdefault((norm(c[0]),c[1]),[]).append(c)
 OVR=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'place_overrides.json')))
+CEM=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'cemeteries.json')))
 SUB={'Auraria':[34.457,-84.019],'Nimburg':[48.110,7.776],'Teningen':[48.129,7.811],'Bahlingen':[48.121,7.740],'Riverside Cem':[39.785,-104.963],'Pinon, Pueblo':[38.43,-104.60],'Piñon':[38.43,-104.60],'Roselawn Cem':[38.236,-104.587],'Fulks Run':[38.645,-78.913],'Aynho':[51.996,-1.240]}
 JUNK=re.compile(r'(cemetery|cemetary|cem\.|church|meeting|ward|district|precinct|tract|subdivision|same |street|parish|hundred|http|memorial|unknown|probated|^of\b|^\d)',re.I)
 def city(tok,cc,adm=None):
@@ -25,7 +26,10 @@ def city(tok,cc,adm=None):
 def geocode(p):
     if not p: return None
     p=p.strip()
-    if len(p)>100: return None
+    p=re.sub(r'\s*Plot:.*$','',p).strip()
+    if len(p)>200: return None
+    for k,v in CEM.items():
+        if k.lower() in p.lower(): return v+['cemetery']
     if p in OVR: return OVR[p] and [OVR[p][0],OVR[p][1],'manual']
     for k,v in SUB.items():
         if k.lower() in p.lower(): return v+['manual']
