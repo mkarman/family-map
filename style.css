@@ -114,3 +114,5 @@ ul.tree.root{padding-left:4px}
 .seg+.seg{border-left:1px solid var(--line)}
 .seg.on{background:var(--accent);color:#fff;font-weight:600}
 .seg .dot{width:9px;height:9px;border-radius:50%;border:1px solid #fff}
+.aka{color:var(--muted);font-size:.8rem}
+.aka-line{font-size:.85rem;margin:0 0 6px;padding:6px 8px;background:#f6ecdc;border-radius:6px}

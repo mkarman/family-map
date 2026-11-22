@@ -150,7 +150,7 @@
     const badges = [(p.photos || []).length ? '🖼' : '', (p.stories || []).length ? '📖' : ''].join('');
     let h = `<li><div class="node${p.living ? ' living' : ''}${selected === id ? ' selected' : ''}" data-id="${id}">
       <span class="caret${par.length ? '' : ' empty'}" data-toggle="${id}">${open ? '▼' : '▶'}</span>
-      <span class="nm">${esc(p.name)}</span>${p.years ? `<span class="yrs">${esc(p.years)}</span>` : ''}<span class="badges">${badges}</span></div>`;
+      <span class="nm">${esc(p.name)}${p.aka ? ` <i class="aka">"${esc(p.aka)}"</i>` : ''}</span>${p.years ? `<span class="yrs">${esc(p.years)}</span>` : ''}<span class="badges">${badges}</span></div>`;
     if (par.length && open) {
       const ord = par.slice().sort((a, b) => (P[a].sex === 'F') - (P[b].sex === 'F'));
       h += `<ul class="tree">${ord.map(x => nodeHTML(x, depth + 1)).join('')}</ul>`;
@@ -195,6 +195,7 @@
       h += `<p class="rel">Living person. Details are kept private.</p>`;
     } else {
       h += `<p class="rel">${esc(p.years || '')}${p.rel ? ' · ' + esc(p.rel) : ''}</p>`;
+      if (p.aka) h += `<p class="aka-line">Also known as <b>"${esc(p.aka)}"</b>${p.note ? '. ' + esc(p.note) : ''}</p>`;
       const evs = sortedEvents(p); let n = 0;
       if (evs.length) h += `<h3>Life events</h3><ul class="evlist">${evs.map(e => {
         const num = e.ll ? ++n : '';
@@ -304,14 +305,14 @@
   map.on('click', () => { if (isMobile()) $('#sidebar').classList.remove('open'); });
 
   // ---------- search ----------
-  const idx = Object.values(P).map(p => ({ id: p.id, n: p.name.toLowerCase(), p }));
+  const idx = Object.values(P).map(p => ({ id: p.id, n: (p.name + ' ' + (p.aka || '')).toLowerCase(), p }));
   let act = -1;
   $('#search').addEventListener('input', () => {
     const q = $('#search').value.trim().toLowerCase(); const ul = $('#search-results');
     if (q.length < 2) { ul.hidden = true; return; }
     const words = q.split(/\s+/);
     const res = idx.filter(x => words.every(w => x.n.includes(w))).sort((a, b) => (!!b.p.ahn - !!a.p.ahn) || a.n.localeCompare(b.n)).slice(0, 25);
-    ul.innerHTML = res.length ? res.map(x => `<li data-id="${x.id}">${esc(x.p.name)} <span class="yrs">${esc(x.p.years || '')}</span></li>`).join('') : '<li>No match</li>';
+    ul.innerHTML = res.length ? res.map(x => `<li data-id="${x.id}">${esc(x.p.name)}${x.p.aka ? ` <i>"${esc(x.p.aka)}"</i>` : ''} <span class="yrs">${esc(x.p.years || '')}</span></li>`).join('') : '<li>No match</li>';
     ul.hidden = false; act = -1;
   });
   $('#search').addEventListener('keydown', e => {

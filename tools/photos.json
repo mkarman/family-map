@@ -1018,5 +1018,45 @@
    100,
    86
   ]
+ },
+ {
+  "file": "marion-york-research/carl-york-harvey-wade-photo-booth-portrait.jpg",
+  "caption": "\"Carl York,\" very likely Harvey Wade, in a photo-booth portrait from the early 1930s",
+  "people": [
+   "Harvey Wade"
+  ],
+  "place": [
+   39.739,
+   -104.99,
+   "Denver, Colorado"
+  ],
+  "story": "\"Carl York\": the grandfather who wasn't a York",
+  "kind": "portrait",
+  "crop": [
+   7,
+   8,
+   69,
+   65
+  ]
+ },
+ {
+  "file": "marion-york-research/1935-carl-york-death-certificate-LA-6501.jpg",
+  "caption": "\"Carl York\"'s 1935 Los Angeles death certificate (no. 6501)",
+  "people": [
+   "Harvey Wade"
+  ],
+  "place": [
+   34.052,
+   -118.244,
+   "Los Angeles, California"
+  ],
+  "story": "\"Carl York\": the grandfather who wasn't a York",
+  "kind": "record",
+  "crop": [
+   9,
+   5,
+   93,
+   98
+  ]
  }
 ]

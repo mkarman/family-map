@@ -162,6 +162,18 @@ for i, p in raw.items():
         o['events'] = evs
     o.setdefault('side', 'K' if i.startswith('K') else 'W')
     people[i] = o
+EXTRA = cfg('person_extras.json')
+for nmx, ex in EXTRA.items():
+    if nmx.startswith('_'): continue
+    for i, p in raw.items():
+        if full(p) == nmx and not p['living']:
+            o = people[i]
+            if ex.get('aka'): o['aka'] = ex['aka']
+            if ex.get('note'): o['note'] = ex['note']
+            o['events'] = o.get('events', []) + ex.get('events', [])
+            if any(e['t'] == 'Died' for e in ex.get('events', [])):
+                dy = next(yr(e['date']) for e in ex['events'] if e['t'] == 'Died')
+                o['years'] = o['years'].split('–')[0] + '–' + str(dy)
 living = [p for p in raw.values() if p['living']]
 note(f'People: {len(people)} ({len(living)} living, shown without details)')
 

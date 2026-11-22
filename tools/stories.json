@@ -905,5 +905,23 @@
     -76.08
    ]
   ]
+ },
+ "\"Carl York\": the grandfather who wasn't a York": {
+  "people": [
+   "Harvey Wade",
+   "Mildred Eva Hoover"
+  ],
+  "places": [
+   [
+    "Denver, Colorado (1935)",
+    39.739,
+    -104.99
+   ],
+   [
+    "Los Angeles, California (1935)",
+    34.052,
+    -118.244
+   ]
+  ]
  }
 }

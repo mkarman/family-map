@@ -1,0 +1,11 @@
+{
+  "_about": "Extra facts not in the MyHeritage export, keyed by the person's name as it appears in the tree.",
+  "Harvey Wade": {
+    "aka": "Carl York",
+    "note": "Very likely the man known as \"Carl York\" (strongly supported by DNA and 1935 records, not yet proven by one document).",
+    "events": [
+      {"t": "Lived", "date": "1933–1935", "place": "Denver, Colorado (as \"Carl York\")", "ll": [39.739, -104.990], "prec": "city"},
+      {"t": "Died", "date": "11 MAY 1935", "place": "General Hospital, Los Angeles, California (as \"Carl York\")", "ll": [34.052, -118.244], "prec": "city"}
+    ]
+  }
+}
