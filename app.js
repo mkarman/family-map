@@ -46,14 +46,54 @@
         <label><input type="checkbox" data-l="stories" checked> 📖 Stories</label>
         <label><input type="checkbox" data-l="events" checked> ● Life events</label>
         <label><input type="checkbox" data-l="lines" checked> ➝ Migrations</label>
+        <div class="cb">Color by <select id="cb-sel"><option value="side">Side</option><option value="line">Family line</option><option value="gen">Generation</option></select><div id="cb-key"></div></div>
         <label class="om"><input type="checkbox" id="om-on"> 📜 Old maps</label>
         <div id="om-box" hidden><select id="om-sel"></select><input type="range" id="om-op" min="20" max="100" value="75" title="Old map opacity"><div id="om-list"></div></div>`;
       L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
-      d.addEventListener('change', e => { if (!e.target.dataset.l) return; show[e.target.dataset.l] = e.target.checked; render(); });
+      d.addEventListener('change', e => { if (e.target.id === 'cb-sel') { colorBy = e.target.value; try { localStorage.setItem('colorby', colorBy); } catch (_) {} colorKey(); renderTree(); render(); return; } if (!e.target.dataset.l) return; show[e.target.dataset.l] = e.target.checked; render(); });
       return d;
     }
   });
   new Legend({ position: 'topleft' }).addTo(map);
+
+  // ---------- colors by side / family line / generation ----------
+  let colorBy = localStorage.getItem('colorby') || 'side';
+  const bits = n => Math.floor(Math.log2(n));
+  const SIDECOL = { W: '#b5562b', K: '#2f6f8f' };
+  const LINECOL = { W4: '#b5562b', W5: '#d19a1c', W6: '#8a4fa3', W7: '#c2477a', K4: '#2f6f8f', K5: '#3c9a6b', K6: '#4b63c4', K7: '#7b8a2e' };
+  function personAt(side, n) {
+    let id = D.roots[side];
+    for (let b = bits(n) - 1; b >= 0 && id; b--) {
+      const par = (P[id].parents || []).map(x => P[x]).filter(Boolean);
+      const want = (n >> b) & 1 ? 'F' : 'M';
+      const q = par.find(x => want === 'F' ? x.sex === 'F' : x.sex !== 'F');
+      id = q && q.id;
+    }
+    return id && P[id];
+  }
+  const LINENAME = {};
+  Object.keys(LINECOL).forEach(k => { const q = personAt(k[0], +k[1]); LINENAME[k] = q ? (q.surname || q.name).split(/\s+or\s+/i)[0] : k; });
+  const lineOf = p => p.ahn >= 4 ? p.side + (p.ahn >> (bits(p.ahn) - 2)) : null;
+  const genOf = p => p.ahn ? bits(p.ahn) : null;
+  const GMAX = Math.max(...Object.values(P).map(p => genOf(p) || 0));
+  const RAMP = [[242, 193, 78], [224, 123, 57], [194, 65, 59], [142, 44, 92], [75, 42, 107], [31, 42, 90]];
+  const genCol = g => { const t = Math.min(1, Math.max(0, (g - 1) / Math.max(1, Math.min(GMAX, 10) - 1))) * (RAMP.length - 1), i = Math.min(RAMP.length - 2, Math.floor(t)), f = t - i; return 'rgb(' + RAMP[i].map((v, k) => Math.round(v + (RAMP[i + 1][k] - v) * f)).join(',') + ')'; };
+  function colorOf(p) {
+    if (!p) return '#7a4b2a';
+    if (colorBy === 'line') return LINECOL[lineOf(p)] || SIDECOL[p.side];
+    if (colorBy === 'gen') return p.ahn ? genCol(genOf(p)) : '#7a4b2a';
+    return SIDECOL[p.side] || '#7a4b2a';
+  }
+  const GNAME = g => g === 1 ? 'Parents' : g === 2 ? 'Grandparents' : g === 3 ? 'Great-grandparents' : `${g - 2}× great-grandparents`;
+  function colorKey() {
+    $('#cb-sel').value = colorBy;
+    const sw = (c, t) => `<span><i style="background:${c}"></i>${esc(t)}</span>`;
+    let h = '';
+    if (colorBy === 'side') h = sw(SIDECOL.W, 'White side') + sw(SIDECOL.K, 'Karman side');
+    else if (colorBy === 'line') h = Object.keys(LINECOL).filter(k => side === 'all' || k[0] === side).map(k => sw(LINECOL[k], LINENAME[k] + ' line')).join('');
+    else h = [1, 2, 3, 4, 5, 6, 8].filter(g => g <= GMAX).map(g => sw(genCol(g), GNAME(g))).concat(GMAX > 8 ? [sw(genCol(10), 'Older')] : []).join('');
+    $('#cb-key').innerHTML = h;
+  }
 
   // ---------- old map overlays (georeferenced by Map Warper contributors) ----------
   const OLD = [
@@ -121,7 +161,7 @@
   })();
   function migrationLayer(list, faded) {
     list.forEach(mg => {
-      const col = mg.side === 'K' ? '#2f6f8f' : '#b5562b';
+      const col = colorOf(P[mg.people[0]]);
       const f = map.project(mg.from.ll, 3), t = map.project(mg.to.ll, 3);
       const mx = (f.x + t.x) / 2, my = (f.y + t.y) / 2, dx = t.x - f.x, dy = t.y - f.y;
       const c = L.point(mx - dy * .18, my + dx * .18);
@@ -175,6 +215,7 @@
   // ---------- state ----------
   let selected = null;
   let side = 'all';
+  colorKey();
   const photoSide = ph => (ph.people[0] && P[ph.people[0]] && P[ph.people[0]].side) || (ph.story && S[ph.story].side) || 'W';
   const onSide = x => side === 'all' || x === side;
 
@@ -214,7 +255,7 @@
     const approx = PREC[e.prec];
     const sz = num ? 22 : 12;
     const m = L.marker(e.ll, {
-      icon: L.divIcon({ className: '', html: `<div class="ev-pin${approx ? ' approx' : ''}" style="width:${sz}px;height:${sz}px">${num || ''}</div>`, iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2], popupAnchor: [0, -6] }),
+      icon: L.divIcon({ className: '', html: `<div class="ev-pin${approx ? ' approx' : ''}" style="width:${sz}px;height:${sz}px${num ? '' : ';background:' + colorOf(p) + (approx ? ';opacity:.6' : '')}">${num || ''}</div>`, iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2], popupAnchor: [0, -6] }),
       title: `${p.name}: ${evLabel(e)}`
     });
     m.bindPopup(`<h4><a data-person="${p.id}">${esc(p.name)}</a></h4>${esc(evLabel(e))}<br>${esc(e.place)}${e.note ? '<br><i>' + esc(e.note) + '</i>' : ''}${approx ? `<br><small>(${approx})</small>` : ''}`);
@@ -284,7 +325,7 @@
     const badges = [(p.photos || []).length ? '🖼' : '', (p.stories || []).length ? '📖' : ''].join('');
     let h = `<li><div class="node${p.living ? ' living' : ''}${selected === id ? ' selected' : ''}" data-id="${id}">
       <span class="caret${par.length ? '' : ' empty'}" data-toggle="${id}">${open ? '▼' : '▶'}</span>
-      <span class="nm">${esc(p.name)}${p.aka ? ` <i class="aka">"${esc(p.aka)}"</i>` : ''}</span>${p.years ? `<span class="yrs">${esc(p.years)}</span>` : ''}<span class="badges">${badges}</span></div>`;
+      <span class="nm">${p.ahn ? `<i class="ln" style="background:${colorOf(p)}"></i>` : ''}${esc(p.name)}${p.aka ? ` <i class="aka">"${esc(p.aka)}"</i>` : ''}</span>${p.years ? `<span class="yrs">${esc(p.years)}</span>` : ''}<span class="badges">${badges}</span></div>`;
     if (par.length && open) {
       const ord = par.slice().sort((a, b) => (P[a].sex === 'F') - (P[b].sex === 'F'));
       h += `<ul class="tree">${ord.map(x => nodeHTML(x, depth + 1)).join('')}</ul>`;
@@ -449,7 +490,7 @@
     if (all.length) map.fitBounds(L.latLngBounds(all).pad(0.05), { animate: false });
   }
   document.querySelectorAll('[data-side]').forEach(b => b.onclick = () => {
-    side = b.dataset.side;
+    side = b.dataset.side; colorKey();
     document.querySelectorAll('[data-side]').forEach(x => x.classList.toggle('on', x === b));
     if (selected && !onSide(P[selected].side)) select(null); else { renderTree(); render(); }
     if (!selected) fitAll();
