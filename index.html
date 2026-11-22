@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family Map: White and Karman ancestors</title>
+<meta name="description" content="An interactive map of the places, photos and stories of the White and Karman family ancestors.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="vendor/MarkerCluster.css">
+<link rel="stylesheet" href="vendor/MarkerCluster.Default.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar" aria-label="Family tree">
+    <header class="sb-head">
+      <h1>Family Map</h1>
+      <p class="sub">White and Karman ancestors: where they lived, their photos and their stories</p>
+      <div class="search">
+        <input id="search" type="search" placeholder="Find a person…" autocomplete="off" aria-label="Find a person">
+        <ul id="search-results" hidden></ul>
+      </div>
+      <div class="sb-actions">
+        <button id="btn-all" class="chip">Show everyone</button>
+        <button id="btn-stories" class="chip">All stories</button>
+      </div>
+    </header>
+    <div id="person-card" hidden></div>
+    <nav id="tree"></nav>
+    <footer class="sb-foot">Living people are shown without names or details. Pins marked "approximate" are placed at the center of a county, state or country.</footer>
+  </aside>
+  <main id="mapwrap">
+    <div id="map"></div>
+    <button id="toggle-sidebar" aria-label="Show family tree">☰ Tree</button>
+    <div id="filter-banner" hidden></div>
+    <section id="drawer" hidden aria-live="polite">
+      <button class="close" id="drawer-close" aria-label="Close">×</button>
+      <div id="drawer-body"></div>
+    </section>
+  </main>
+</div>
+<div id="lightbox" hidden>
+  <button class="close" id="lb-close" aria-label="Close">×</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</div>
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/leaflet.markercluster.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
