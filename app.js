@@ -213,7 +213,10 @@
     const s = S[sid]; if (!s) return;
     const hero = heroPhoto ? PH[heroPhoto] : (s.photos[0] ? PH[s.photos[0]] : null);
     const others = s.photos.filter(id => !hero || id !== hero.id);
-    let h = `<p class="grp">${esc(s.group || '')}</p><h2>${esc(s.title)}</h2>`;
+    if (!$('#drawer').hidden && $('#drawer-body .storylist')) listScroll = $('#drawer').scrollTop;
+    const backPid = selected && (P[selected].stories || []).length ? selected : null;
+    let h = `<button class="back" data-list="${backPid || 'all'}">← ${backPid ? 'Stories about ' + esc(P[backPid].name) : 'All stories'}</button>`;
+    h += `<p class="grp">${esc(s.group || '')}</p><h2>${esc(s.title)}</h2>`;
     if (hero) h += `<img class="hero" src="${hero.src}" data-photo="${hero.id}" alt="${esc(hero.caption)}"><p class="herocap">${esc(hero.caption)}</p>`;
     if (others.length) h += `<div class="thumbs">${others.map(id => `<img src="${PH[id].thumb}" data-photo="${id}" alt="${esc(PH[id].caption)}" title="${esc(PH[id].caption)}">`).join('')}</div>`;
     if (s.people.length) h += `<div class="people">${s.people.map(id => `<button class="chip" data-person="${id}">${esc(P[id].name)}</button>`).join('')}</div>`;
@@ -222,13 +225,20 @@
     $('#drawer-body').innerHTML = h; $('#drawer').hidden = false; $('#drawer').scrollTop = 0;
     setHash('story=' + sid);
   }
-  function storyList() {
-    let h = `<h2>All stories</h2><ul class="storylist">`; let g = null;
-    D.stories.forEach(s => {
+  let listScroll = 0, listFor = null;
+  function storyList(pid) {
+    const p = pid && P[pid];
+    const items = p ? (p.stories || []).map(id => S[id]) : D.stories;
+    listFor = p ? pid : null;
+    let h = `<h2>${p ? 'Stories about ' + esc(p.name) : 'All stories'}</h2>`;
+    if (p) h += `<p class="grp"><a class="backlink" data-list="all">See all ${D.stories.length} stories</a></p>`;
+    h += `<ul class="storylist">`; let g = null;
+    items.forEach(s => {
       if (s.group !== g) { g = s.group; h += `<li class="grp-h">${esc(g)}</li>`; }
       h += `<li data-story="${s.id}"><h4>${esc(s.title)}</h4><small>${esc(s.places.map(p => p.label).join(' · '))}</small></li>`;
     });
     $('#drawer-body').innerHTML = h + '</ul>'; $('#drawer').hidden = false; $('#drawer').scrollTop = 0;
+    setHash(selected ? 'person=' + encodeURIComponent(selected) : '');
   }
   function closeDrawer() { $('#drawer').hidden = true; setHash(selected ? 'person=' + encodeURIComponent(selected) : ''); }
   $('#drawer-close').onclick = closeDrawer;
@@ -257,7 +267,15 @@
     else if (a.dataset.goto) { const [x, y] = a.dataset.goto.split(',').map(Number); map.setView([x, y], 9); if (isMobile()) $('#drawer').hidden = true; }
   });
   $('#btn-all').onclick = () => select(null);
-  $('#btn-stories').onclick = storyList;
+  $('#btn-stories').onclick = () => storyList();
+  $('#drawer').addEventListener('click', e => {
+    const b = e.target.closest('[data-list]'); if (!b) return;
+    const back = b.classList.contains('back');
+    const pid = b.dataset.list === 'all' ? null : b.dataset.list;
+    const keep = back && listFor === pid;
+    storyList(pid);
+    if (keep) $('#drawer').scrollTop = listScroll;
+  });
   $('#toggle-sidebar').onclick = () => $('#sidebar').classList.toggle('open');
   map.on('click', () => { if (isMobile()) $('#sidebar').classList.remove('open'); });
 
