@@ -1,6 +1,6 @@
 (async function () {
   'use strict';
-  const D = await (await fetch('data/family.json')).json();
+  const D = await (await fetch('data/family.json', { cache: 'no-cache' })).json();
   const P = D.people, S = Object.fromEntries(D.stories.map(s => [s.id, s])), PH = Object.fromEntries(D.photos.map(p => [p.id, p]));
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
