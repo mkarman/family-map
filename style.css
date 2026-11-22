@@ -109,3 +109,8 @@ ul.tree.root{padding-left:4px}
 #drawer .back{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-size:.85rem;cursor:pointer;color:var(--accent);margin-bottom:8px}
 #drawer .back:hover{background:var(--sel)}
 #drawer .backlink{cursor:pointer;color:var(--accent);text-decoration:underline}
+.sides{display:flex;margin-top:10px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg{flex:1;border:none;background:#fff;padding:7px 6px;font-size:.88rem;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:6px}
+.seg+.seg{border-left:1px solid var(--line)}
+.seg.on{background:var(--accent);color:#fff;font-weight:600}
+.seg .dot{width:9px;height:9px;border-radius:50%;border:1px solid #fff}

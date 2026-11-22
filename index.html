@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="vendor/leaflet.css">
 <link rel="stylesheet" href="vendor/MarkerCluster.css">
 <link rel="stylesheet" href="vendor/MarkerCluster.Default.css">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <div id="app">
@@ -20,6 +20,9 @@
       <div class="search">
         <input id="search" type="search" placeholder="Find a person…" autocomplete="off" aria-label="Find a person">
         <ul id="search-results" hidden></ul>
+      </div>
+      <div class="sides" role="group" aria-label="Family side">
+        <button class="seg on" data-side="all">Both sides</button><button class="seg" data-side="W"><span class="dot" style="background:var(--w)"></span>White</button><button class="seg" data-side="K"><span class="dot" style="background:var(--k)"></span>Karman</button>
       </div>
       <div class="sb-actions">
         <button id="btn-all" class="chip">Show everyone</button>
@@ -46,6 +49,6 @@
 </div>
 <script src="vendor/leaflet.js"></script>
 <script src="vendor/leaflet.markercluster.js"></script>
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

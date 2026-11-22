@@ -43,6 +43,9 @@
 
   // ---------- state ----------
   let selected = null;
+  let side = 'all';
+  const photoSide = ph => (ph.people[0] && P[ph.people[0]] && P[ph.people[0]].side) || (ph.story && S[ph.story].side) || 'W';
+  const onSide = x => side === 'all' || x === side;
 
   function photoMarker(ph) {
     const sz = 46;
@@ -101,10 +104,10 @@
     Object.values(layers).forEach(l => { l.clearLayers(); map.removeLayer(l); });
     const pts = [];
     if (!selected) {
-      if (show.photos) D.photos.filter(ph => ph.ll).forEach(ph => layers.photos.addLayer(photoMarker(ph)));
-      if (show.stories) D.stories.forEach(s => storyMarkers(s).forEach(m => layers.stories.addLayer(m)));
+      if (show.photos) D.photos.filter(ph => ph.ll && onSide(photoSide(ph))).forEach(ph => layers.photos.addLayer(photoMarker(ph)));
+      if (show.stories) D.stories.filter(s => onSide(s.side)).forEach(s => storyMarkers(s).forEach(m => layers.stories.addLayer(m)));
       if (show.events) Object.values(P).forEach(p => {
-        if (p.living || !p.ahn) return;
+        if (p.living || !p.ahn || !onSide(p.side)) return;
         const b = (p.events || []).find(e => e.ll && /Born|Christened|Baptized/.test(e.t));
         if (b) layers.events.addLayer(eventMarker(p, b, 0));
       });
@@ -147,11 +150,11 @@
   function expandDepth(id, d) { if (d <= 0 || !P[id]) return; expanded.add(id); P[id].parents.forEach(x => expandDepth(x, d - 1)); }
   function renderTree() {
     const r = D.roots;
-    $('#tree').innerHTML = `
+    $('#tree').innerHTML = (onSide('W') ? `
       <div class="branch-title"><span class="dot" style="background:var(--w)"></span>White side</div>
-      <ul class="tree root">${nodeHTML(r.W, 0)}</ul>
+      <ul class="tree root">${nodeHTML(r.W, 0)}</ul>` : '') + (onSide('K') ? `
       <div class="branch-title"><span class="dot" style="background:var(--k)"></span>Karman side</div>
-      <ul class="tree root">${nodeHTML(r.K, 0)}</ul>`;
+      <ul class="tree root">${nodeHTML(r.K, 0)}</ul>` : '');
   }
   $('#tree').addEventListener('click', e => {
     const t = e.target.closest('[data-toggle]');
@@ -228,10 +231,10 @@
   let listScroll = 0, listFor = null;
   function storyList(pid) {
     const p = pid && P[pid];
-    const items = p ? (p.stories || []).map(id => S[id]) : D.stories;
+    const items = p ? (p.stories || []).map(id => S[id]) : D.stories.filter(s => onSide(s.side));
     listFor = p ? pid : null;
-    let h = `<h2>${p ? 'Stories about ' + esc(p.name) : 'All stories'}</h2>`;
-    if (p) h += `<p class="grp"><a class="backlink" data-list="all">See all ${D.stories.length} stories</a></p>`;
+    let h = `<h2>${p ? 'Stories about ' + esc(p.name) : side === 'all' ? 'All stories' : (side === 'W' ? 'White' : 'Karman') + ' side stories'}</h2>`;
+    if (p) h += `<p class="grp"><a class="backlink" data-list="all">See all stories</a></p>`;
     h += `<ul class="storylist">`; let g = null;
     items.forEach(s => {
       if (s.group !== g) { g = s.group; h += `<li class="grp-h">${esc(g)}</li>`; }
@@ -267,6 +270,17 @@
     else if (a.dataset.goto) { const [x, y] = a.dataset.goto.split(',').map(Number); map.setView([x, y], 9); if (isMobile()) $('#drawer').hidden = true; }
   });
   $('#btn-all').onclick = () => select(null);
+  function fitAll() {
+    const all = [...D.photos.filter(p => p.ll && onSide(photoSide(p))).map(p => p.ll), ...D.stories.filter(s => onSide(s.side)).flatMap(s => s.places.map(p => p.ll))].filter(ll => ll[0] > 20);
+    if (all.length) map.fitBounds(L.latLngBounds(all).pad(0.05), { animate: false });
+  }
+  document.querySelectorAll('[data-side]').forEach(b => b.onclick = () => {
+    side = b.dataset.side;
+    document.querySelectorAll('[data-side]').forEach(x => x.classList.toggle('on', x === b));
+    if (selected && !onSide(P[selected].side)) select(null); else { renderTree(); render(); }
+    if (!selected) fitAll();
+    if (!$('#drawer').hidden && $('#drawer-body .storylist') && !listFor) storyList();
+  });
   $('#btn-stories').onclick = () => storyList();
   $('#drawer').addEventListener('click', e => {
     const b = e.target.closest('[data-list]'); if (!b) return;
