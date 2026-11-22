@@ -923,5 +923,35 @@
     -118.244
    ]
   ]
+ },
+ "The Hursts and Dulins of Fairfax: two wills from the 1780s": {
+  "people": [
+   "W@I500326@",
+   "Sarah Hurst",
+   "Edward Dulin",
+   "Sarah Sally Dulin"
+  ],
+  "places": [
+   [
+    "Fairfax County, Virginia (Hurst and Dulin farms)",
+    38.8,
+    -77.22
+   ],
+   [
+    "Falls Church: Fairfax Parish, 1765",
+    38.882,
+    -77.171
+   ],
+   [
+    "Alexandria: Fairfax County court, will proved 1789",
+    38.805,
+    -77.047
+   ],
+   [
+    "Nelson County, Kentucky (Sally Dulin Stone)",
+    37.91,
+    -85.32
+   ]
+  ]
  }
 }

@@ -180,6 +180,7 @@ note(f'People: {len(people)} ({len(living)} living, shown without details)')
 byname = {}
 for i, p in raw.items(): byname.setdefault(full(p), []).append(i)
 def resolve(n):
+    if n in raw: return None if raw[n]['living'] else n   # a tree id (for people who share a name)
     L = sorted(byname.get(n, []), key=lambda i: 0 if raw[i].get('ahn') else 1)
     return L[0] if L and not raw[L[0]]['living'] else None
 

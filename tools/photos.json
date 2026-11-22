@@ -1058,5 +1058,25 @@
    93,
    98
   ]
+ },
+ {
+  "file": "family-map-site/photos/hurst-dulin/john-hurst-will-1787.png",
+  "caption": "Opening of John Hurst's 1787 will, Fairfax County Will Book E, p. 349",
+  "people": [
+   "W@I500326@"
+  ],
+  "place": [
+   38.805,
+   -77.047,
+   "Alexandria, Virginia (Fairfax County court)"
+  ],
+  "story": "The Hursts and Dulins of Fairfax: two wills from the 1780s",
+  "kind": "record",
+  "crop": [
+   48,
+   31.5,
+   94,
+   40
+  ]
  }
 ]
