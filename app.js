@@ -69,8 +69,8 @@
     map.invalidateSize();
     const b = L.latLngBounds(pts);
     const small = Math.abs(b.getNorth() - b.getSouth()) < 0.3 && Math.abs(b.getEast() - b.getWest()) < 0.3;
-    if (small) map.setView(b.getCenter(), 10);
-    else map.fitBounds(b.pad(0.25), { maxZoom: 9 });
+    if (small) map.setView(b.getCenter(), 10, { animate: false });
+    else map.fitBounds(b.pad(0.25), { maxZoom: 9, animate: false });
   }
   window.addEventListener('resize', () => map.invalidateSize());
   function evLabel(e) { return `${e.t}${e.date ? ' ' + e.date : ''}`; }
@@ -296,6 +296,6 @@
   expandDepth(D.roots.W, 4); expandDepth(D.roots.K, 4);
   renderTree(); render();
   const all = [...D.photos.filter(p => p.ll).map(p => p.ll), ...D.stories.flatMap(s => s.places.map(p => p.ll))].filter(ll => ll[0] > 20);
-  if (all.length) map.fitBounds(L.latLngBounds(all).pad(0.05));
+  if (all.length && !/person=/.test(location.hash)) map.fitBounds(L.latLngBounds(all).pad(0.05), { animate: false });
   fromHash();
 })();
