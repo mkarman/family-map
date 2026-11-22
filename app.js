@@ -65,6 +65,14 @@
       return m;
     });
   }
+  function fitTo(pts) {
+    map.invalidateSize();
+    const b = L.latLngBounds(pts);
+    const small = Math.abs(b.getNorth() - b.getSouth()) < 0.3 && Math.abs(b.getEast() - b.getWest()) < 0.3;
+    if (small) map.setView(b.getCenter(), 10);
+    else map.fitBounds(b.pad(0.25), { maxZoom: 9 });
+  }
+  window.addEventListener('resize', () => map.invalidateSize());
   function evLabel(e) { return `${e.t}${e.date ? ' ' + e.date : ''}`; }
   const PREC = { county: 'approximate: county', state: 'approximate: state', country: 'approximate: country' };
 
@@ -117,10 +125,7 @@
       $('#clear-sel').onclick = () => select(null);
     }
     Object.entries(layers).forEach(([k, l]) => { if (l.getLayers().length) l.addTo(map); });
-    if (selected) {
-      if (pts.length === 1) map.setView(pts[0], 8);
-      else if (pts.length) map.fitBounds(L.latLngBounds(pts).pad(0.25), { maxZoom: 9 });
-    }
+    if (selected && pts.length) fitTo(pts);
   }
 
   // ---------- tree ----------
