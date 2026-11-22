@@ -9,10 +9,20 @@
 
   // ---------- map ----------
   const map = L.map('map', { zoomControl: true, worldCopyJump: true }).setView([42, -40], 3);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+  const esri = 'Tiles &copy; Esri';
+  const bases = {
+    'Street (OpenStreetMap)': L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }),
+    'Satellite (Esri)': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: esri + ', Maxar, Earthstar Geographics' }),
+    'Topographic (Esri)': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: esri }),
+    'National Geographic style (Esri)': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: esri + ', National Geographic' }),
+    'Terrain contours (OpenTopoMap)': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom: 17, attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; <a href="https://opentopomap.org">OpenTopoMap</a>' }),
+    'Light gray (Esri)': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: esri }),
+    'US topo maps (USGS)': L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'USGS The National Map' })
+  };
+  const saved = localStorage.getItem('basemap');
+  (bases[saved] || bases['Street (OpenStreetMap)']).addTo(map);
+  L.control.layers(bases, null, { position: 'topright', collapsed: true }).addTo(map);
+  map.on('baselayerchange', e => { try { localStorage.setItem('basemap', e.name); } catch (_) {} });
   const clusterOpts = { maxClusterRadius: 45, showCoverageOnHover: false, spiderfyOnMaxZoom: true };
   const layers = {
     photos: L.markerClusterGroup(Object.assign({}, clusterOpts, {
