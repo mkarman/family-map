@@ -33,9 +33,10 @@
     })),
     stories: L.markerClusterGroup(clusterOpts),
     events: L.markerClusterGroup(Object.assign({}, clusterOpts, { maxClusterRadius: 35 })),
-    path: L.layerGroup()
+    path: L.layerGroup(),
+    lines: L.layerGroup()
   };
-  const show = { photos: true, stories: true, events: true };
+  const show = { photos: true, stories: true, events: true, lines: true };
 
   // legend / layer toggles
   const Legend = L.Control.extend({
@@ -43,13 +44,84 @@
       const d = L.DomUtil.create('div', 'legend');
       d.innerHTML = `<label><input type="checkbox" data-l="photos" checked> 🖼 Photos</label>
         <label><input type="checkbox" data-l="stories" checked> 📖 Stories</label>
-        <label><input type="checkbox" data-l="events" checked> ● Life events</label>`;
+        <label><input type="checkbox" data-l="events" checked> ● Life events</label>
+        <label><input type="checkbox" data-l="lines" checked> ➝ Migrations</label>`;
       L.DomEvent.disableClickPropagation(d);
       d.addEventListener('change', e => { show[e.target.dataset.l] = e.target.checked; render(); });
       return d;
     }
   });
   new Legend({ position: 'bottomleft' }).addTo(map);
+
+  // ---------- migrations ----------
+  const birthOf = p => (p.events || []).find(e => e.ll && /Born|Christened|Baptized/.test(e.t) && e.prec !== 'country');
+  const dist = (a, b) => Math.hypot(a[0] - b[0], (a[1] - b[1]) * Math.cos(a[0] * Math.PI / 180)) * 111;
+  const MIG = (() => {
+    const m = {};
+    Object.values(P).forEach(p => {
+      if (p.living || !p.ahn) return;
+      const b = birthOf(p); if (!b) return;
+      p.parents.forEach(q => {
+        const pq = P[q]; if (!pq || pq.living) return;
+        const a = birthOf(pq); if (!a || dist(a.ll, b.ll) < 40) return;
+        const k = a.ll + '|' + b.ll;
+        (m[k] = m[k] || { from: a, to: b, people: new Set(), side: p.side, year: year(b.date) || year(a.date) && year(a.date) + 25 }).people.add(p.id);
+      });
+    });
+    return Object.values(m).map(x => Object.assign(x, { people: [...x.people] }));
+  })();
+  function migrationLayer(list, faded) {
+    list.forEach(mg => {
+      const col = mg.side === 'K' ? '#2f6f8f' : '#b5562b';
+      const f = map.project(mg.from.ll, 3), t = map.project(mg.to.ll, 3);
+      const mx = (f.x + t.x) / 2, my = (f.y + t.y) / 2, dx = t.x - f.x, dy = t.y - f.y;
+      const c = L.point(mx - dy * .18, my + dx * .18);
+      const q = u => L.point((1 - u) * (1 - u) * f.x + 2 * (1 - u) * u * c.x + u * u * t.x, (1 - u) * (1 - u) * f.y + 2 * (1 - u) * u * c.y + u * u * t.y);
+      const pts = []; for (let i = 0; i <= 24; i++) pts.push(map.unproject(q(i / 24), 3));
+      const fade = faded && faded(mg);
+      const line = L.polyline(pts, { color: col, weight: 2, opacity: fade ? .25 : .7 });
+      const names = mg.people.map(id => `<a data-person="${id}">${esc(P[id].name)}</a>`).join(', ');
+      line.bindPopup(`<h4>Family move</h4>From ${esc(mg.from.place)}<br>to ${esc(mg.to.place)}${mg.year ? ' (by ' + mg.year + ')' : ''}<br><small>Born at the new place: ${names}</small>`);
+      layers.lines.addLayer(line);
+      const p0 = q(.68), p1 = q(.72);
+      const ang = Math.atan2(p1.y - p0.y, p1.x - p0.x) * 180 / Math.PI;
+      layers.lines.addLayer(L.marker(map.unproject(q(.7), 3), { interactive: false, icon: L.divIcon({ className: '', html: `<div class="arrow" style="transform:rotate(${ang}deg);border-left-color:${col};opacity:${fade ? .35 : .9}"></div>`, iconSize: [12, 12], iconAnchor: [6, 6] }) }));
+    });
+  }
+
+  // ---------- timeline ----------
+  let tl = null; // null = all years, else the current year
+  const allYears = Object.values(P).filter(p => p.ahn && !p.living).flatMap(p => (p.events || []).map(e => year(e.date)).filter(Boolean));
+  const Y0 = Math.max(1600, Math.floor(Math.min(...allYears) / 10) * 10), Y1 = Math.min(2000, Math.ceil(Math.max(...allYears) / 10) * 10);
+  const WINDOW = 25;
+  let playTimer = null;
+  const TL = L.Control.extend({
+    onAdd() {
+      const d = L.DomUtil.create('div', 'timeline');
+      d.innerHTML = `<button id="tl-play" title="Play through the years">▶</button>
+        <input id="tl-range" type="range" min="${Y0}" max="${Y1}" step="5" value="${Y0}" aria-label="Year">
+        <span id="tl-year">All years</span>
+        <button id="tl-all" title="Show all years" hidden>✕</button>`;
+      L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+      return d;
+    }
+  });
+  new TL({ position: 'bottomright' }).addTo(map);
+  function setYear(y) {
+    tl = y; $('#tl-year').textContent = y == null ? 'All years' : y; $('#tl-all').hidden = y == null;
+    if (y != null) $('#tl-range').value = y;
+    if (selected && y != null) { selected = null; renderTree(); renderCard(); setHash(''); }
+    render();
+  }
+  function stopPlay() { clearInterval(playTimer); playTimer = null; $('#tl-play').textContent = '▶'; }
+  $('#tl-range').addEventListener('input', e => { stopPlay(); setYear(+e.target.value); });
+  $('#tl-all').onclick = () => { stopPlay(); setYear(null); };
+  $('#tl-play').onclick = () => {
+    if (playTimer) return stopPlay();
+    let y = tl == null || tl >= Y1 ? Y0 : tl;
+    $('#tl-play').textContent = '❚❚'; setYear(y);
+    playTimer = setInterval(() => { y += 5; if (y > Y1) { stopPlay(); return; } setYear(y); }, 700);
+  };
 
   // ---------- state ----------
   let selected = null;
@@ -114,14 +186,27 @@
     Object.values(layers).forEach(l => { l.clearLayers(); map.removeLayer(l); });
     const pts = [];
     if (!selected) {
-      if (show.photos) D.photos.filter(ph => ph.ll && onSide(photoSide(ph))).forEach(ph => layers.photos.addLayer(photoMarker(ph)));
-      if (show.stories) D.stories.filter(s => onSide(s.side)).forEach(s => storyMarkers(s).forEach(m => layers.stories.addLayer(m)));
-      if (show.events) Object.values(P).forEach(p => {
-        if (p.living || !p.ahn || !onSide(p.side)) return;
-        const b = (p.events || []).find(e => e.ll && /Born|Christened|Baptized/.test(e.t));
-        if (b) layers.events.addLayer(eventMarker(p, b, 0));
-      });
-      $('#filter-banner').hidden = true;
+      if (tl == null) {
+        if (show.photos) D.photos.filter(ph => ph.ll && onSide(photoSide(ph))).forEach(ph => layers.photos.addLayer(photoMarker(ph)));
+        if (show.stories) D.stories.filter(s => onSide(s.side)).forEach(s => storyMarkers(s).forEach(m => layers.stories.addLayer(m)));
+        if (show.events) Object.values(P).forEach(p => {
+          if (p.living || !p.ahn || !onSide(p.side)) return;
+          const b = (p.events || []).find(e => e.ll && /Born|Christened|Baptized/.test(e.t));
+          if (b) layers.events.addLayer(eventMarker(p, b, 0));
+        });
+        if (show.lines) migrationLayer(MIG.filter(m => onSide(m.side)));
+        $('#filter-banner').hidden = true;
+      } else {
+        let n = 0;
+        if (show.events) Object.values(P).forEach(p => {
+          if (p.living || !p.ahn || !onSide(p.side)) return;
+          (p.events || []).forEach(e => { const y = year(e.date); if (e.ll && y && y > tl - WINDOW && y <= tl) { layers.events.addLayer(eventMarker(p, e, 0)); n++; } });
+        });
+        if (show.lines) migrationLayer(MIG.filter(m => onSide(m.side) && m.year && m.year <= tl), m => m.year <= tl - WINDOW);
+        $('#filter-banner').innerHTML = `<span><b>${tl - WINDOW + 1}–${tl}</b>: ${n} life event${n === 1 ? '' : 's'} on the map. Older moves are faded.</span><button id="clear-sel">All years</button>`;
+        $('#filter-banner').hidden = false;
+        $('#clear-sel').onclick = () => { stopPlay(); setYear(null); };
+      }
     } else {
       const p = P[selected];
       const evs = sortedEvents(p).filter(e => e.ll);
@@ -216,6 +301,7 @@
 
   function select(id, opts = {}) {
     selected = id;
+    if (id && tl != null) { stopPlay(); tl = null; $('#tl-year').textContent = 'All years'; $('#tl-all').hidden = true; }
     if (id) reveal(id);
     renderTree(); renderCard(); render();
     if (!opts.noHash) setHash(id ? 'person=' + encodeURIComponent(id) : '');
