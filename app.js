@@ -45,13 +45,49 @@
       d.innerHTML = `<label><input type="checkbox" data-l="photos" checked> 🖼 Photos</label>
         <label><input type="checkbox" data-l="stories" checked> 📖 Stories</label>
         <label><input type="checkbox" data-l="events" checked> ● Life events</label>
-        <label><input type="checkbox" data-l="lines" checked> ➝ Migrations</label>`;
-      L.DomEvent.disableClickPropagation(d);
-      d.addEventListener('change', e => { show[e.target.dataset.l] = e.target.checked; render(); });
+        <label><input type="checkbox" data-l="lines" checked> ➝ Migrations</label>
+        <label class="om"><input type="checkbox" id="om-on"> 📜 Old maps</label>
+        <div id="om-box" hidden><input type="range" id="om-op" min="20" max="100" value="75" title="Old map opacity"><div id="om-list"></div></div>`;
+      L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+      d.addEventListener('change', e => { if (!e.target.dataset.l) return; show[e.target.dataset.l] = e.target.checked; render(); });
       return d;
     }
   });
   new Legend({ position: 'topleft' }).addTo(map);
+
+  // ---------- old map overlays (georeferenced by Map Warper contributors) ----------
+  const OLD = [
+    [68526, 'United States, 1839', [15.5, -132.3, 52.4, -60.1], 3, 7],
+    [50202, 'Bohemia and Moravia', [47.25, 9.74, 53.98, 21.48], 4, 10],
+    [65415, 'Dakota, Minnesota and Nebraska, 1872', [37.34, -105.94, 51.2, -87.48], 5, 10],
+    [110759, 'Missouri, 1833', [35.23, -95.54, 41.76, -88.15], 5, 10],
+    [66847, 'Indiana, 1850', [36.92, -89.28, 42.78, -82.38], 5, 11],
+    [92046, 'Ohio, 1831', [37.28, -86.61, 42.73, -77.2], 5, 11],
+    [98178, 'Pennsylvania, 1796', [39.51, -80.72, 42.67, -74.67], 5, 11],
+    [55546, 'Virginia, West Virginia and Maryland, 1868', [34.73, -84.03, 40.8, -74.67], 5, 11],
+    [91903, 'Maryland, 1855', [36.78, -79.99, 40.83, -74.43], 6, 12],
+    [81548, 'New Jersey, 1795', [38.95, -75.63, 41.43, -73.71], 6, 12],
+    [39230, 'St. Louis, topographical map', [38.29, -90.79, 38.95, -90.06], 8, 15],
+    [79224, 'Pueblo area, USGS 1891', [37.95, -105.05, 38.53, -104.47], 8, 15],
+    [64221, 'Denver, 1859', [39.71, -105.05, 39.79, -104.96], 11, 17]
+  ];
+  map.createPane('old'); map.getPane('old').style.zIndex = 250; map.getPane('old').style.opacity = .75;
+  const oldLayers = OLD.map(([id, title, b, minZ, maxZ], i) => ({ title, minZ, maxZ, bounds: L.latLngBounds([b[0], b[1]], [b[2], b[3]]),
+    layer: L.tileLayer(`https://mapwarper.net/maps/tile/${id}/{z}/{x}/{y}.png`, { pane: 'old', bounds: [[b[0], b[1]], [b[2], b[3]]], minZoom: minZ, maxZoom: maxZ, zIndex: i + 1, attribution: '<a href="https://mapwarper.net/maps/' + id + '" target="_blank" rel="noopener">' + title + '</a> (Map Warper)' }) }));
+  function oldList() {
+    const z = map.getZoom(), v = map.getBounds();
+    const vis = oldLayers.filter(o => z >= o.minZ && z <= o.maxZ && v.intersects(o.bounds));
+    $('#om-list').innerHTML = vis.length ? 'Showing: ' + vis.map(o => esc(o.title)).join('; ') : 'No old map for this view. Zoom out or move the map.';
+  }
+  function setOld(on) {
+    oldLayers.forEach(o => on ? o.layer.addTo(map) : map.removeLayer(o.layer));
+    $('#om-box').hidden = !on; if (on) oldList();
+    try { localStorage.setItem('oldmaps', on ? '1' : ''); } catch (_) {}
+  }
+  map.on('moveend zoomend', () => { if (!$('#om-box').hidden) oldList(); });
+  $('#om-on').onchange = e => setOld(e.target.checked);
+  $('#om-op').oninput = e => map.getPane('old').style.opacity = e.target.value / 100;
+  if (localStorage.getItem('oldmaps')) { $('#om-on').checked = true; setOld(true); }
 
   // ---------- migrations ----------
   const birthOf = p => (p.events || []).find(e => e.ll && /Born|Christened|Baptized/.test(e.t) && e.prec !== 'country');

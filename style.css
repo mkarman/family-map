@@ -131,3 +131,8 @@ ul.tree.root{padding-left:4px}
 #drawer .tourbar.end{margin:18px 0 6px}
 #drawer .tour-nav{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer;color:var(--accent);font-size:.85rem}
 #drawer .tour-nav:disabled{opacity:.4;cursor:default}
+
+.legend .om{border-top:1px solid var(--line);margin-top:4px;padding-top:4px}
+#om-box{max-width:190px;font-size:.75rem;color:#555}
+#om-box input[type=range]{width:100%}
+#om-list{line-height:1.3}
