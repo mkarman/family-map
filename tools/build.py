@@ -174,6 +174,20 @@ for nmx, ex in EXTRA.items():
             if any(e['t'] == 'Died' for e in ex.get('events', [])):
                 dy = next(yr(e['date']) for e in ex['events'] if e['t'] == 'Died')
                 o['years'] = o['years'].split('–')[0] + '–' + str(dy)
+# relatives off the direct line: brothers, sisters, aunts, uncles, great-uncles ...
+def side_rel(g, sex, who):
+    if g == 0: return f"{who}'s " + {'M': 'brother', 'F': 'sister'}.get(sex, 'sibling')
+    base = {'M': 'uncle', 'F': 'aunt'}.get(sex, 'aunt or uncle')
+    if g == 1: return f"{who}'s {base}"
+    k = g - 1
+    return f"{who}'s " + ('great-' if k == 1 else str(k) + ('nd' if k == 2 else 'rd' if k == 3 else 'th') + ' great-') + base
+for i, o in people.items():
+    if o.get('ahn') or o['living']: continue
+    sib = [c for par in o['parents'] if par in people and people[par].get('ahn') for c in people[par]['children'] if c != i and c in people and people[c].get('ahn')]
+    if sib:
+        s0 = people[sib[0]]
+        o['rel'] = side_rel(int(math.log2(s0['ahn'])), o['sex'], 'Kristin' if s0['side'] == 'W' else 'Michael')
+        o['sibOf'] = sib[0]
 living = [p for p in raw.values() if p['living']]
 note(f'People: {len(people)} ({len(living)} living, shown without details)')
 
@@ -218,7 +232,9 @@ for n, s in enumerate(S):
     for p in living:
         if p['given'] and p['surname'] and len(p['given'].split()[0]) > 2 and re.search(re.escape(p['given'].split()[0]) + r'\W+(\w+\W+)?' + re.escape(p['surname'].split()[0]) + r'\b', plain):
             problems.append(f'living person "{full(p)}" named in story "{s["title"]}"')
-    stories.append({'id': sid, 'title': s['title'], 'group': s['group'], 'side': s['side'], 'html': html, 'people': ids, 'places': places, 'photos': []})
+    st = {'id': sid, 'title': s['title'], 'group': s['group'], 'side': s['side'], 'html': html, 'people': ids, 'places': places, 'photos': []}
+    if c and c.get('quest'): st['quest'] = c['quest']
+    stories.append(st)
 for t in STORY_CFG:
     if not any(s['title'] == t for s in stories) and t not in PRIV['excluded_story_titles']:
         note(f'Story in stories.json no longer in the docs (renamed?): "{t}"')

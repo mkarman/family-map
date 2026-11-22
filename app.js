@@ -36,7 +36,7 @@
     path: L.layerGroup(),
     lines: L.layerGroup()
   };
-  const show = { photos: true, stories: true, events: true, lines: true };
+  const show = { photos: true, stories: true, events: true, lines: true, quests: true };
 
   // legend / layer toggles
   const Legend = L.Control.extend({
@@ -46,6 +46,7 @@
         <label><input type="checkbox" data-l="stories" checked> 📖 Stories</label>
         <label><input type="checkbox" data-l="events" checked> ● Life events</label>
         <label><input type="checkbox" data-l="lines" checked> ➝ Migrations</label>
+        <label><input type="checkbox" data-l="quests" checked> 🧭 Side quests</label>
         <div class="cb">Color by <select id="cb-sel"><option value="side">Side</option><option value="line">Family line</option><option value="gen">Generation</option></select><div id="cb-key"></div></div>
         <label class="om"><input type="checkbox" id="om-on"> 📜 Old maps</label>
         <div id="om-box" hidden><select id="om-sel"></select><input type="range" id="om-op" min="20" max="100" value="75" title="Old map opacity"><div id="om-list"></div></div>`;
@@ -232,11 +233,11 @@
   function storyMarkers(s) {
     return s.places.map(pl => {
       const m = L.marker(pl.ll, {
-        icon: L.divIcon({ className: '', html: `<div class="story-pin side-${s.side}"><span>📖</span></div>`, iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -28] }),
+        icon: L.divIcon({ className: '', html: `<div class="story-pin side-${s.side}${s.quest ? ' quest' : ''}"><span>${s.quest ? '🧭' : '📖'}</span></div>`, iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -28] }),
         title: s.title
       });
       const th = s.photos.slice(0, 4).map(id => `<img src="${PH[id].thumb}" data-photo="${id}" alt="">`).join('');
-      m.bindPopup(`<h4>${esc(s.title)}</h4><div>${esc(pl.label)}</div>${th ? `<div class="pop-thumbs">${th}</div>` : ''}<p><a data-story="${s.id}">Read the story →</a></p>`);
+      m.bindPopup(`${s.quest ? '<div class="quest-tag">🧭 Side quest</div>' : ''}<h4>${esc(s.title)}</h4><div>${esc(pl.label)}</div>${th ? `<div class="pop-thumbs">${th}</div>` : ''}<p><a data-story="${s.id}">Read the story →</a></p>`);
       return m;
     });
   }
@@ -278,7 +279,7 @@
     if (!selected) {
       if (tl == null) {
         if (show.photos) D.photos.filter(ph => ph.ll && onSide(photoSide(ph))).forEach(ph => layers.photos.addLayer(photoMarker(ph)));
-        if (show.stories) D.stories.filter(s => onSide(s.side)).forEach(s => storyMarkers(s).forEach(m => layers.stories.addLayer(m)));
+        if (show.stories) D.stories.filter(s => onSide(s.side) && (!s.quest || show.quests)).forEach(s => storyMarkers(s).forEach(m => layers.stories.addLayer(m)));
         if (show.events) Object.values(P).forEach(p => {
           if (p.living || !p.ahn || !onSide(p.side)) return;
           const b = (p.events || []).find(e => e.ll && /Born|Christened|Baptized/.test(e.t));
@@ -377,7 +378,9 @@
         return `<li ${e.ll ? `data-ll="${e.ll}"` : ''}><span class="n${e.ll ? '' : ' nomap'}">${num || '–'}</span><span><b>${esc(e.t)}</b> ${esc(e.date)}${e.place ? ', ' + esc(e.place) : ''}${e.with ? ' (to ' + personLink(e.with) + ')' : ''}${e.note ? ' · <i>' + esc(e.note) + '</i>' : ''}${PREC[e.prec] ? ` <span class="approx">(${PREC[e.prec]})</span>` : ''}</span></li>`;
       }).join('')}</ul>`;
     }
-    if ((p.stories || []).length) h += `<h3>Stories</h3><div class="links">${p.stories.map(id => `<a data-story="${id}">${esc(S[id].title)}</a>`).join('')}</div>`;
+    if ((p.stories || []).length) h += `<h3>Stories</h3><div class="links">${p.stories.map(id => `<a data-story="${id}">${S[id].quest ? '🧭 ' : ''}${esc(S[id].title)}</a>`).join('')}</div>`;
+    const fq = D.stories.filter(s => s.quest && !(p.stories || []).includes(s.id) && s.people.some(id => P[id].sibOf === p.id || (P[id].parents || []).includes(p.id) || (P[id].sibOf && P[P[id].sibOf].parents.includes(p.id))));
+    if (fq.length) h += `<h3>🧭 Side quests in the family</h3><div class="links">${fq.map(s => `<a data-story="${s.id}">${esc(s.title)}</a>`).join('')}</div>`;
     if ((p.photos || []).length) h += `<h3>Photos</h3><div class="thumbs">${p.photos.map(id => `<img src="${PH[id].thumb}" data-photo="${id}" alt="${esc(PH[id].caption)}" title="${esc(PH[id].caption)}">`).join('')}</div>`;
     const fam = [['Parents', p.parents], ['Spouses', p.spouses], ['Children', p.children]].filter(([, l]) => l && l.length);
     fam.forEach(([k, l]) => { h += `<h3>${k}</h3><div class="links">${l.map(personLink).join('')}</div>`; });
@@ -402,9 +405,9 @@
   let tour = null;
   function startTour(pid) {
     const p = pid && P[pid];
-    const list = (p ? (p.stories || []) : D.stories.filter(s => onSide(s.side)).map(s => s.id));
+    const list = pid === 'quests' ? D.stories.filter(s => s.quest && onSide(s.side)).map(s => s.id) : (p ? (p.stories || []) : D.stories.filter(s => onSide(s.side)).map(s => s.id));
     if (!list.length) return;
-    tour = { list, i: 0, pid: p ? pid : null };
+    tour = { list, i: 0, pid: p ? pid : pid === 'quests' ? 'quests' : null };
     openStory(list[0], null, true);
   }
   function tourStep(d) {
@@ -428,13 +431,14 @@
     const others = s.photos.filter(id => !hero || id !== hero.id);
     if (!$('#drawer').hidden && $('#drawer-body .storylist')) listScroll = $('#drawer').scrollTop;
     const backPid = selected && (P[selected].stories || []).length ? selected : null;
-    let h = `<button class="back" data-list="${backPid || 'all'}">← ${backPid ? 'Stories about ' + esc(P[backPid].name) : 'All stories'}</button>`;
+    const backQ = !backPid && (listMode === 'quests' || (tour && tour.pid === 'quests'));
+    let h = `<button class="back" data-list="${backPid || (backQ ? 'quests' : 'all')}">← ${backPid ? 'Stories about ' + esc(P[backPid].name) : backQ ? 'Side quests' : 'All stories'}</button>`;
     const tourBar = tour ? `<div class="tourbar"><button class="tour-nav" data-tour="-1" ${tour.i ? '' : 'disabled'}>‹ Previous</button><span>Tour · ${tour.i + 1} of ${tour.list.length}</span><button class="tour-nav" data-tour="1" ${tour.i < tour.list.length - 1 ? '' : 'disabled'}>Next story ›</button></div>` : '';
     h += tourBar;
-    h += `<p class="grp">${esc(s.group || '')}</p><h2>${esc(s.title)}</h2>`;
+    h += `<p class="grp">${esc(s.group || '')}</p>${s.quest ? `<p class="quest-tag">🧭 Side quest: ${esc(s.quest)}</p>` : ''}<h2>${esc(s.title)}</h2>`;
     if (hero) h += `<img class="hero" src="${hero.src}" data-photo="${hero.id}" alt="${esc(hero.caption)}"><p class="herocap">${esc(hero.caption)}</p>`;
     if (others.length) h += `<div class="thumbs">${others.map(id => `<img src="${PH[id].thumb}" data-photo="${id}" alt="${esc(PH[id].caption)}" title="${esc(PH[id].caption)}">`).join('')}</div>`;
-    if (s.people.length) h += `<div class="people">${s.people.map(id => `<button class="chip" data-person="${id}">${esc(P[id].name)}</button>`).join('')}</div>`;
+    if (s.people.length) h += `<div class="people">${s.people.map(id => `<button class="chip" data-person="${id}" title="${esc(P[id].rel || '')}">${esc(P[id].name)}${!P[id].ahn && P[id].rel ? ` <small>(${esc(P[id].rel.replace(/^\w+'s /, ''))})</small>` : ''}</button>`).join('')}</div>`;
     if (s.places.length) h += `<div class="places">📍 ${s.places.map((pl, i) => `<a data-goto="${pl.ll}">${esc(pl.label)}</a>`).join(' · ')}</div>`;
     h += `<div class="story">${s.html}</div>`;
     if (tour) h += tourBar.replace('class="tourbar"', 'class="tourbar end"');
@@ -443,17 +447,20 @@
     if (fromTour) flyToStory(s);
   }
   let listScroll = 0, listFor = null;
+  let listMode = 'all';
   function storyList(pid) {
-    const p = pid && P[pid];
-    const items = p ? (p.stories || []).map(id => S[id]) : D.stories.filter(s => onSide(s.side));
-    listFor = p ? pid : null;
-    let h = `<h2>${p ? 'Stories about ' + esc(p.name) : side === 'all' ? 'All stories' : (side === 'W' ? 'White' : 'Karman') + ' side stories'}</h2>`;
-    if (p) h += `<p class="grp"><a class="backlink" data-list="all">See all stories</a></p>`;
-    if (items.length > 1) h += `<button class="tour-start" data-tourstart="${p ? pid : ''}">▶ Take the guided tour (${items.length} stories)</button>`;
+    const q = pid === 'quests';
+    const p = !q && pid && P[pid];
+    const items = q ? D.stories.filter(s => s.quest && onSide(s.side)) : p ? (p.stories || []).map(id => S[id]) : D.stories.filter(s => onSide(s.side));
+    listFor = p ? pid : q ? 'quests' : null; listMode = q ? 'quests' : 'all';
+    let h = `<h2>${q ? '🧭 Side quests' : p ? 'Stories about ' + esc(p.name) : side === 'all' ? 'All stories' : (side === 'W' ? 'White' : 'Karman') + ' side stories'}</h2>`;
+    if (q) h += `<p class="grp">Stories about brothers, aunts, uncles and cousins off the direct line, and family legends. <a class="backlink" data-list="all">See all stories</a></p>`;
+    else if (p) h += `<p class="grp"><a class="backlink" data-list="all">See all stories</a></p>`;
+    if (items.length > 1) h += `<button class="tour-start" data-tourstart="${q ? 'quests' : p ? pid : ''}">▶ Take the ${q ? 'side-quest' : 'guided'} tour (${items.length} stories)</button>`;
     h += `<ul class="storylist">`; let g = null;
     items.forEach(s => {
       if (s.group !== g) { g = s.group; h += `<li class="grp-h">${esc(g)}</li>`; }
-      h += `<li data-story="${s.id}"><h4>${esc(s.title)}</h4><small>${esc(s.places.map(p => p.label).join(' · '))}</small></li>`;
+      h += `<li data-story="${s.id}"><h4>${s.quest ? '🧭 ' : ''}${esc(s.title)}</h4><small>${esc(s.places.map(p => p.label).join(' · '))}</small></li>`;
     });
     $('#drawer-body').innerHTML = h + '</ul>'; $('#drawer').hidden = false; $('#drawer').scrollTop = 0;
     setHash(selected ? 'person=' + encodeURIComponent(selected) : '');
@@ -497,6 +504,7 @@
     if (!$('#drawer').hidden && $('#drawer-body .storylist') && !listFor) storyList();
   });
   $('#btn-stories').onclick = () => storyList();
+  $('#btn-quests').onclick = () => storyList('quests');
   $('#drawer').addEventListener('click', e => {
     const t = e.target.closest('[data-tour],[data-tourstart]');
     if (t) { if (t.dataset.tour) tourStep(+t.dataset.tour); else startTour(t.dataset.tourstart || null); return; }

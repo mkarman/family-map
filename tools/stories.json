@@ -448,7 +448,8 @@
    "Catherine Maria Schwiering",
    "Christian Schwiering",
    "\"Minnie\" Marion W Woermann",
-   "Heinrich William Woermann"
+   "Heinrich William Woermann",
+   "W@I500680@"
   ],
   "places": [
    [
@@ -456,11 +457,12 @@
     38.627,
     -90.199
    ]
-  ]
+  ],
+  "quest": "The Woermann cousin who married the designer Charles Eames"
  },
  "Uncle Robert: the brother who didn't come home": {
   "people": [
-   "Robert Julius Mueller"
+   "W@I500145@"
   ],
   "places": [
    [
@@ -473,7 +475,8 @@
     52.6,
     1.2
    ]
-  ]
+  ],
+  "quest": "A B-24 gunner who didn't come home: Donna's uncle Robert Mueller"
  },
  "The Muellers and Schulers: a quarryman's son born in Alabama": {
   "people": [
@@ -552,7 +555,8 @@
     35.137,
     -81.817
    ]
-  ]
+  ],
+  "quest": "A hero of Cowpens who may be kin to the Everharts"
  },
  "The ironworks that supplied the Revolution": {
   "people": [
@@ -795,7 +799,8 @@
     52.279,
     8.047
    ]
-  ]
+  ],
+  "quest": "The family tradition of a Karmann cousin and a famous car"
  },
  "Lorenz Korpman (1832–?), from Bad Dürkheim to the Union cavalry": {
   "people": [
@@ -875,7 +880,9 @@
  "James E. Passwaters (1844–1921), Union soldier": {
   "people": [
    "James Edward Passwaters",
-   "James E Passwaters"
+   "James E Passwaters",
+   "Margaret E. Passwater",
+   "Nettie Mae Passwater"
   ],
   "places": [
    [
