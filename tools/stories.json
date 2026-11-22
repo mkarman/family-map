@@ -960,5 +960,133 @@
     -85.32
    ]
   ]
+ },
+ "Kate Bleakley: the aunt who knew Edgar Allan Poe": {
+  "from": "Col. Charles W. Raphun (1842–1903) and his aunt who knew Poe",
+  "start": "**The aunt and the poet.**",
+  "end": "$",
+  "intro": "**Kate Bleakley** was very likely the older sister of Michael's 4th great-grandmother **Louisa (Blakely) Raphun**. In old age she told a Baltimore newspaper that the young Edgar Allan Poe had written her love letters.",
+  "quest": "Michael's 5th great-aunt and the young Edgar Allan Poe",
+  "people": [
+   "Louisa Blakely",
+   "Charles W. Raphun"
+  ],
+  "places": [
+   [
+    "Baltimore: Marsh Market Space, where Kate was born (1816)",
+    39.2885,
+    -76.605
+   ],
+   [
+    "West Point, New York (Poe a cadet, 1830–31)",
+    41.3915,
+    -73.9565
+   ],
+   [
+    "Baltimore: 903 North Fulton Avenue, Kate's home in 1903",
+    39.3005,
+    -76.6455
+   ]
+  ]
+ },
+ "Lewis Robards, Rachel Donelson and Andrew Jackson": {
+  "from": "The older Robards: a lot at the falls of the James, 6,000 acres in Kentucky, and Andrew Jackson's rival",
+  "start": "**The half-uncle in the history books.**",
+  "end": "**The half-aunt",
+  "quest": "A Robards uncle whose broken marriage became a presidential scandal",
+  "people": [
+   "William Lewis Robards"
+  ],
+  "places": [
+   [
+    "Harrodsburg, Kentucky: Lewis marries Rachel Donelson, 1785",
+    37.7623,
+    -84.8433
+   ],
+   [
+    "Nashville: Rachel meets Andrew Jackson",
+    36.1627,
+    -86.7816
+   ],
+   [
+    "The Hermitage, Jackson's home",
+    36.215,
+    -86.613
+   ]
+  ]
+ },
+ "Jack Jouett's ride and the Robards aunt who married him": {
+  "from": "The older Robards: a lot at the falls of the James, 6,000 acres in Kentucky, and Andrew Jackson's rival",
+  "start": "**The half-aunt who married a hero of the Revolution.**",
+  "end": "**The uncle on Aaron Burr",
+  "quest": "Sally Robards married the man who saved Thomas Jefferson from capture",
+  "people": [
+   "William Lewis Robards"
+  ],
+  "places": [
+   [
+    "Cuckoo Tavern, Louisa County: Jouett sees Tarleton's men",
+    37.964,
+    -77.92
+   ],
+   [
+    "Monticello: Jefferson warned, June 1781",
+    38.0086,
+    -78.4532
+   ]
+  ]
+ },
+ "Barnett Rogers at Blue Licks, beside Daniel Boone's son": {
+  "from": "Bryan's Station and Blue Licks, 1782: the Rogers brothers in the last fight of the Revolution",
+  "start": "**Blue Licks, 19 August 1782.**",
+  "end": "**The reckoning.**",
+  "intro": "**Barnett (Bernard) Rogers** was an uncle of Kristin's 5th great-grandmother Elizabeth Rogers, the little girl inside Bryan's Station. He rode out with Daniel Boone to chase the raiders, and like Boone's son Israel he did not come back.",
+  "quest": "An uncle killed at Blue Licks in 1782, in the same fight as Daniel Boone's son",
+  "people": [
+   "Elizabeth Rogers",
+   "Joseph Hale Rogers"
+  ],
+  "places": [
+   [
+    "Bryan's Station, near Lexington",
+    38.089,
+    -84.426
+   ],
+   [
+    "Blue Licks battlefield, 19 Aug 1782",
+    38.428,
+    -83.995
+   ]
+  ]
+ },
+ "The Koetters in World War II: Melvin, Oliver, and a sister in Seattle": {
+  "quest": "Donna's uncles in uniform in World War II, and an aunt who died far from home",
+  "people": [
+   "W@I500031@",
+   "W@I500073@",
+   "W@I500075@"
+  ],
+  "places": [
+   [
+    "7101 Lexington, Normandy Township: the Koetter home in 1940",
+    38.716,
+    -90.292
+   ],
+   [
+    "Shreve Avenue, north St. Louis: Oliver's home",
+    38.68,
+    -90.23
+   ],
+   [
+    "Seattle: Mildred died here in 1953",
+    47.6062,
+    -122.3321
+   ],
+   [
+    "Wright City, Missouri: Melvin died here in 2021",
+    38.8275,
+    -91.0204
+   ]
+  ]
  }
 }

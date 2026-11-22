@@ -207,6 +207,19 @@ def md(t):
 S = split(os.path.join(SRC, 'white-stories-family-copy.md'), 'W') + split(os.path.join(SRC, 'karman-stories.md'), 'K')
 anc = [i for i, p in raw.items() if p.get('ahn') and not p['living']]
 stories, problems = [], []
+# side quests excerpted from a longer story: stories.json entry with "from" (source title), "start" and optional "end" (paragraph openings)
+_slug = lambda t: 's' + re.sub(r'[^a-z0-9]+', '-', t.lower())[:40].strip('-')
+for qt, qc in STORY_CFG.items():
+    if not qc.get('from'): continue
+    src = next((x for x in S if x['title'] == qc['from']), None)
+    if not src: problems.append(f'side quest "{qt}": source story "{qc["from"]}" not found'); continue
+    paras = src['body'].split('\n\n')
+    i0 = next((k for k, p in enumerate(paras) if p.strip().startswith(qc['start'])), None)
+    if i0 is None: problems.append(f'side quest "{qt}": start text not found in "{qc["from"]}"'); continue
+    i1 = len(paras) if qc.get('end') == '$' else next((k for k, p in enumerate(paras) if k > i0 and qc.get('end') and p.strip().startswith(qc['end'])), None)
+    body = '\n\n'.join(([qc['intro']] if qc.get('intro') else []) + paras[i0:i1 if i1 is not None else i0 + 1])
+    body += f'\n\n*This side quest comes from the family story <a data-story="{_slug(src["title"])}">{src["title"]}</a>.*'
+    S.append({'title': qt, 'body': body, 'group': 'Side quests', 'side': src['side'], 'level': 3})
 for n, s in enumerate(S):
     if s['level'] != 3 or s['title'] in PRIV['excluded_story_titles']: continue
     sid = 's' + re.sub(r'[^a-z0-9]+', '-', s['title'].lower())[:40].strip('-')
