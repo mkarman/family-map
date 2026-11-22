@@ -9,9 +9,9 @@
 
   // ---------- map ----------
   const map = L.map('map', { zoomControl: true, worldCopyJump: true }).setView([42, -40], 3);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    maxZoom: 18, subdomains: 'abcd',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
   const clusterOpts = { maxClusterRadius: 45, showCoverageOnHover: false, spiderfyOnMaxZoom: true };
   const layers = {

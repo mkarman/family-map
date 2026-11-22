@@ -15,4 +15,4 @@ Living people appear only as "Living [Surname]", with no dates, places or photos
 - `img/`: photos (full size and thumbnails).
 - `tools/`: the Python scripts that build `data/family.json` and `img/` from the MyHeritage GEDCOM exports, the stories docs and the project photo folders. `story_config.py` and `photo_config.py` say which people and places each story and photo belong to; `place_overrides.json` fixes map positions.
 
-Map tiles © OpenStreetMap contributors © CARTO.
+Map tiles © OpenStreetMap contributors.
