@@ -136,3 +136,5 @@ ul.tree.root{padding-left:4px}
 #om-box{max-width:190px;font-size:.75rem;color:#555}
 #om-box input[type=range]{width:100%}
 #om-list{line-height:1.3}
+
+#om-sel{width:100%;font-size:.75rem;margin:2px 0}

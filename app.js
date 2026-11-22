@@ -47,7 +47,7 @@
         <label><input type="checkbox" data-l="events" checked> ● Life events</label>
         <label><input type="checkbox" data-l="lines" checked> ➝ Migrations</label>
         <label class="om"><input type="checkbox" id="om-on"> 📜 Old maps</label>
-        <div id="om-box" hidden><input type="range" id="om-op" min="20" max="100" value="75" title="Old map opacity"><div id="om-list"></div></div>`;
+        <div id="om-box" hidden><select id="om-sel"></select><input type="range" id="om-op" min="20" max="100" value="75" title="Old map opacity"><div id="om-list"></div></div>`;
       L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
       d.addEventListener('change', e => { if (!e.target.dataset.l) return; show[e.target.dataset.l] = e.target.checked; render(); });
       return d;
@@ -74,18 +74,30 @@
   map.createPane('old'); map.getPane('old').style.zIndex = 250; map.getPane('old').style.opacity = .75;
   const oldLayers = OLD.map(([id, title, b, minZ, maxZ], i) => ({ title, minZ, maxZ, bounds: L.latLngBounds([b[0], b[1]], [b[2], b[3]]),
     layer: L.tileLayer(`https://mapwarper.net/maps/tile/${id}/{z}/{x}/{y}.png`, { pane: 'old', bounds: [[b[0], b[1]], [b[2], b[3]]], minZoom: minZ, maxZoom: maxZ, zIndex: i + 1 }), id }));
-  function oldList() {
-    const z = map.getZoom(), v = map.getBounds();
-    const vis = oldLayers.filter(o => z >= o.minZ && z <= o.maxZ && v.intersects(o.bounds));
-    $('#om-list').innerHTML = (vis.length ? 'Showing: ' + vis.map(o => `<a href="https://mapwarper.net/maps/${o.id}" target="_blank" rel="noopener">${esc(o.title)}</a>`).join('; ') : 'No old map for this view. Zoom out or move the map.') + '<br><small>Georeferenced by Map Warper contributors</small>';
+  let oldPick = 'auto', oldCur = null;
+  const area = o => (o.bounds.getNorth() - o.bounds.getSouth()) * (o.bounds.getEast() - o.bounds.getWest());
+  function bestOld() {
+    const z = map.getZoom(), c = map.getCenter();
+    return oldLayers.filter(o => z >= o.minZ - 1 && z <= o.maxZ && o.bounds.contains(c)).sort((x, y) => area(x) - area(y))[0] || null;
+  }
+  function showOld() {
+    const on = $('#om-on').checked;
+    const want = !on ? null : oldPick === 'auto' ? bestOld() : oldLayers[+oldPick];
+    if (want !== oldCur) { if (oldCur) map.removeLayer(oldCur.layer); if (want) want.layer.addTo(map); oldCur = want; }
+    if (on) $('#om-list').innerHTML = (want ? `<a href="https://mapwarper.net/maps/${want.id}" target="_blank" rel="noopener">${esc(want.title)}</a>` : 'No old map here. Zoom out or move the map.') + '<br><small>Georeferenced by Map Warper contributors</small>';
   }
   function setOld(on) {
-    oldLayers.forEach(o => on ? o.layer.addTo(map) : map.removeLayer(o.layer));
+    $('#om-box').hidden = !on; showOld();
     map.attributionControl[on ? 'addAttribution' : 'removeAttribution']('Old maps: <a href="https://mapwarper.net" target="_blank" rel="noopener">Map Warper</a>');
-    $('#om-box').hidden = !on; if (on) oldList();
     try { localStorage.setItem('oldmaps', on ? '1' : ''); } catch (_) {}
   }
-  map.on('moveend zoomend', () => { if (!$('#om-box').hidden) oldList(); });
+  $('#om-sel').innerHTML = '<option value="auto">Best map for this view</option>' + oldLayers.map((o, i) => `<option value="${i}">${esc(o.title)}</option>`).join('');
+  $('#om-sel').onchange = e => {
+    oldPick = e.target.value;
+    if (oldPick !== 'auto') { const o = oldLayers[+oldPick]; map.flyToBounds(o.bounds, { maxZoom: o.minZ + 2, duration: 1.2 }); }
+    showOld();
+  };
+  map.on('moveend zoomend', () => { if ($('#om-on').checked) showOld(); });
   $('#om-on').onchange = e => setOld(e.target.checked);
   $('#om-op').oninput = e => map.getPane('old').style.opacity = e.target.value / 100;
   if (localStorage.getItem('oldmaps')) { $('#om-on').checked = true; setOld(true); }
