@@ -73,14 +73,15 @@
   ];
   map.createPane('old'); map.getPane('old').style.zIndex = 250; map.getPane('old').style.opacity = .75;
   const oldLayers = OLD.map(([id, title, b, minZ, maxZ], i) => ({ title, minZ, maxZ, bounds: L.latLngBounds([b[0], b[1]], [b[2], b[3]]),
-    layer: L.tileLayer(`https://mapwarper.net/maps/tile/${id}/{z}/{x}/{y}.png`, { pane: 'old', bounds: [[b[0], b[1]], [b[2], b[3]]], minZoom: minZ, maxZoom: maxZ, zIndex: i + 1, attribution: '<a href="https://mapwarper.net/maps/' + id + '" target="_blank" rel="noopener">' + title + '</a> (Map Warper)' }) }));
+    layer: L.tileLayer(`https://mapwarper.net/maps/tile/${id}/{z}/{x}/{y}.png`, { pane: 'old', bounds: [[b[0], b[1]], [b[2], b[3]]], minZoom: minZ, maxZoom: maxZ, zIndex: i + 1 }), id }));
   function oldList() {
     const z = map.getZoom(), v = map.getBounds();
     const vis = oldLayers.filter(o => z >= o.minZ && z <= o.maxZ && v.intersects(o.bounds));
-    $('#om-list').innerHTML = vis.length ? 'Showing: ' + vis.map(o => esc(o.title)).join('; ') : 'No old map for this view. Zoom out or move the map.';
+    $('#om-list').innerHTML = (vis.length ? 'Showing: ' + vis.map(o => `<a href="https://mapwarper.net/maps/${o.id}" target="_blank" rel="noopener">${esc(o.title)}</a>`).join('; ') : 'No old map for this view. Zoom out or move the map.') + '<br><small>Georeferenced by Map Warper contributors</small>';
   }
   function setOld(on) {
     oldLayers.forEach(o => on ? o.layer.addTo(map) : map.removeLayer(o.layer));
+    map.attributionControl[on ? 'addAttribution' : 'removeAttribution']('Old maps: <a href="https://mapwarper.net" target="_blank" rel="noopener">Map Warper</a>');
     $('#om-box').hidden = !on; if (on) oldList();
     try { localStorage.setItem('oldmaps', on ? '1' : ''); } catch (_) {}
   }
