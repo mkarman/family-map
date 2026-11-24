@@ -1240,5 +1240,25 @@
    100,
    53.7
   ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-212955.png",
+  "caption": "William O. Callahan's headstone: born 17 Aug 1840, died 21 Nov 1892 (Find a Grave)",
+  "people": [
+   "William O. Callahan"
+  ],
+  "place": [
+   39.2905,
+   -76.683,
+   "New Cathedral Cemetery, Baltimore"
+  ],
+  "story": "William O. Callahan (about 1840–1892) and Frances Rooney",
+  "kind": "grave",
+  "crop": [
+   2,
+   19,
+   98,
+   76
+  ]
  }
 ]
