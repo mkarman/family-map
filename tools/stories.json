@@ -591,23 +591,6 @@
    ]
   ]
  },
- "Adrianna Polhemus: born in Dutch Brazil": {
-  "people": [
-   "Johannis Theodorus Polhemus"
-  ],
-  "places": [
-   [
-    "Itamaracá, Dutch Brazil",
-    -7.75,
-    -34.83
-   ],
-   [
-    "Flatbush, Brooklyn (New Amsterdam)",
-    40.64,
-    -73.96
-   ]
-  ]
- },
  "Col. Charles W. Raphun (1842–1903) and his aunt who knew Poe": {
   "people": [
    "Charles W. Raphun",
@@ -1183,6 +1166,138 @@
     "Daniel Everhart's house near Lebanon, KY (Burr legend)",
     37.55,
     -85.21
+   ]
+  ]
+ },
+ "From Dutch Brazil to the Kentucky frontier: the Polhemus, Sebring and Bodine families": {
+  "people": [
+   "W@I500379@",
+   "W@I500380@",
+   "W@I500325@",
+   "W@I500324@",
+   "W@I500158@",
+   "W@I500313@",
+   "W@I500149@",
+   "W@I500129@"
+  ],
+  "places": [
+   [
+    "Heidelberg University: Polhemus enrolls, 1620",
+    49.4106,
+    8.7062
+   ],
+   [
+    "Meppel, Drenthe: minister and Latin-school head from 1627",
+    52.6958,
+    6.1944
+   ],
+   [
+    "Itamaracá, Dutch Brazil: Adrianna born about 1644",
+    -7.7476,
+    -34.8322
+   ],
+   [
+    "Recife: the Dutch surrender, January 1654",
+    -8.0631,
+    -34.8711
+   ],
+   [
+    "New Amsterdam: Polhemus arrives, September 1654",
+    40.7033,
+    -74.017
+   ],
+   [
+    "Flatbush Reformed Dutch Church, Brooklyn",
+    40.6505,
+    -73.9583
+   ],
+   [
+    "Bergen, New Jersey: the Sebrings from 1681",
+    40.7282,
+    -74.0776
+   ],
+   [
+    "Six Mile Run, Somerset County, NJ: Jacob and Elizabeth Bodine",
+    40.4651,
+    -74.5582
+   ],
+   [
+    "Loudoun County, Virginia: Cornelius and Isaac Bodine",
+    39.08,
+    -77.64
+   ],
+   [
+    "Nelson County, Kentucky: Isaac Bodine dies, 1818",
+    37.8,
+    -85.47
+   ]
+  ]
+ },
+ "Robards cousins in the history books: a congressman on both sides of the war, and a portrait painter": {
+  "quest": "Otho Robards's nephew sat in both the U.S. and Confederate Congresses; his cousin painted Henry Clay and Lafayette",
+  "people": [
+   "W@I500105@",
+   "W@I500147@"
+  ],
+  "places": [
+   [
+    "Keene, Jessamine County: the Singleton hemp factory",
+    37.94,
+    -84.64
+   ],
+   [
+    "Canton, Mississippi: Otho R. Singleton's home and grave",
+    32.6126,
+    -90.0368
+   ],
+   [
+    "U.S. Capitol: Singleton in Congress, 1853–61 and 1875–87",
+    38.8899,
+    -77.0091
+   ],
+   [
+    "Frenchtown (River Raisin): Matthew Jouett survives, 1813",
+    41.9134,
+    -83.3966
+   ],
+   [
+    "Boston: Jouett studies with Gilbert Stuart, 1816",
+    42.3601,
+    -71.0589
+   ],
+   [
+    "Lexington: Jouett's studio; he dies here in 1827",
+    38.0406,
+    -84.5037
+   ]
+  ]
+ },
+ "Lewis C. Robards: a Lexington slave trader in the family": {
+  "quest": "A cousin who ran one of Lexington's slave jails, and the free woman who named him in court",
+  "people": [
+   "W@I500105@",
+   "W@I500147@"
+  ],
+  "places": [
+   [
+    "Short Street, Lexington: Robards's slave jail, about 1849–55",
+    38.0485,
+    -84.499
+   ],
+   [
+    "Mason County, KY: Arian Belle and her daughter kidnapped, 1850",
+    38.6,
+    -83.82
+   ],
+   [
+    "Cincinnati: Henrietta Wood kidnapped across the river, 1853",
+    39.1031,
+    -84.512
+   ],
+   [
+    "Smith Mills, Henderson County: Robards in 1870",
+    37.79,
+    -87.76
    ]
   ]
  }
