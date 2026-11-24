@@ -5,7 +5,8 @@
    "Anna Rypka",
    "W@I500099@",
    "W@I500139@",
-   "W@I500140@"
+   "W@I500140@",
+   "W@I500141@"
   ],
   "places": [
    [
@@ -145,7 +146,11 @@
    "William Ellis",
    "W@I500248@",
    "W@I500249@",
-   "W@I500278@"
+   "W@I500278@",
+   "W@I500258@",
+   "W@I500257@",
+   "W@I500300@",
+   "W@I500301@"
   ],
   "places": [
    [
@@ -167,6 +172,21 @@
     "Tennessee (1838 pension)",
     36.0,
     -84.0
+   ],
+   [
+    "Beaver Creek, Knox Co., TN: Stephen Robertson and Winnie Chitwood marry, 1800",
+    36.05,
+    -84.0
+   ],
+   [
+    "Needmore, Brown Co., IN: Robertson Cemetery",
+    39.15,
+    -86.3
+   ],
+   [
+    "Samaria Cemetery, Linton: Martha Robertson Ellis",
+    39.03,
+    -87.17
    ]
   ]
  },
@@ -264,7 +284,15 @@
    "William Robert Wade",
    "William M Wade",
    "W@I500623@",
-   "W@I500647@"
+   "W@I500647@",
+   "W@I500630@",
+   "W@I500631@",
+   "W@I500632@",
+   "W@I500633@",
+   "W@I500646@",
+   "W@I500648@",
+   "W@I500655@",
+   "W@I500656@"
   ],
   "places": [
    [
@@ -281,6 +309,26 @@
     "Canton, Cherokee County, Georgia",
     34.237,
     -84.491
+   ],
+   [
+    "Auraria, Lumpkin Co., GA: Wades, Trammells and Whiteners",
+    34.47,
+    -84.03
+   ],
+   [
+    "Dahlonega: U.S. Mint, 1838",
+    34.53,
+    -83.98
+   ],
+   [
+    "Walker County, GA: Peter Trammell in 1840",
+    34.73,
+    -85.3
+   ],
+   [
+    "Cartersville, GA: Bill and Kizzie Wade buried",
+    34.165,
+    -84.8
    ]
   ]
  },
@@ -339,7 +387,8 @@
    "Anthony Smith",
    "W@I500052@",
    "W@I500146@",
-   "W@I500477@"
+   "W@I500477@",
+   "W@I500478@"
   ],
   "places": [
    [
@@ -356,6 +405,11 @@
     "Hampton, Nebraska",
     40.884,
     -97.886
+   ],
+   [
+    "Hampton, Nebraska: Nancy Fullner Smith died 1899",
+    40.88,
+    -97.89
    ]
   ]
  },
@@ -1649,6 +1703,37 @@
     "1952 N. Broadway, St. Louis: Catharina died 1884",
     38.648,
     -90.189
+   ]
+  ]
+ },
+ "From Pabst to Pope: a father's will in Kentucky and a son across the Ohio": {
+  "people": [
+   "W@I500377@",
+   "W@I500378@",
+   "W@I500277@",
+   "W@I500295@",
+   "W@I500248@"
+  ],
+  "places": [
+   [
+    "Fröschen, Palatinate: Hans Georg Pabst born 1741",
+    49.27,
+    7.55
+   ],
+   [
+    "Lincoln County, Kentucky: George Pope Sr.'s will, 1812",
+    37.53,
+    -84.66
+   ],
+   [
+    "Clark County, Indiana: Gasper Pope marries Rebecca, 1811",
+    38.47,
+    -85.71
+   ],
+   [
+    "Lawrence County, Indiana: Jacob born 1818; widow Rebecca, 1840",
+    38.84,
+    -86.48
    ]
   ]
  }
