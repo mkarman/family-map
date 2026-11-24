@@ -1745,5 +1745,75 @@
     -86.48
    ]
   ]
+ },
+ "Don White (1927–2000): a Denver boyhood and a life in the dental supply business": {
+  "people": [
+   "W@I500006@",
+   "W@I500024@",
+   "W@I500023@",
+   "W@I500054@"
+  ],
+  "places": [
+   [
+    "3546 Perry Street, Denver: Don's boyhood home",
+    39.7676,
+    -105.0436
+   ],
+   [
+    "Mount Falcon, near Morrison: Grandma Spence's ranch country",
+    39.637,
+    -105.24
+   ],
+   [
+    "Morrison Cemetery: Don's grave",
+    39.652,
+    -105.19
+   ]
+  ]
+ },
+ "Vernon Koetter (1927–2018): the Navy, a season in Alaska, and McDonnell Douglas": {
+  "people": [
+   "W@I500021@",
+   "W@I500029@",
+   "W@I500030@",
+   "W@I500022@"
+  ],
+  "places": [
+   [
+    "7101 Lexington, Normandy: Vernon's boyhood home",
+    38.7105,
+    -90.2905
+   ],
+   [
+    "Drury College, Springfield, MO",
+    37.2194,
+    -93.2858
+   ],
+   [
+    "Downey, California: the family in 1961",
+    33.94,
+    -118.13
+   ],
+   [
+    "Bethel Methodist Cemetery, Montgomery City, MO",
+    38.977,
+    -91.505
+   ]
+  ]
+ },
+ "Jean Mueller Koetter (1928–?): close to both her fathers": {
+  "people": [
+   "W@I500022@",
+   "W@I500079@",
+   "W@I500066@",
+   "W@I500021@"
+  ],
+  "places": [
+   [
+    "Bethel Methodist Cemetery, Montgomery City, MO",
+    38.977,
+    -91.505
+   ]
+  ]
  }
 }
