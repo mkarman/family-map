@@ -1088,5 +1088,102 @@
     -91.0204
    ]
   ]
+ },
+ "Tamar Allen's Quaker roots: the Bortons of Aynho, the Woolmans of Painswick, and a cousin who spoke against slavery": {
+  "people": [
+   "W@I500200@",
+   "W@I500223@",
+   "W@I500224@",
+   "W@I500228@",
+   "W@I500229@",
+   "W@I500235@",
+   "W@I500236@",
+   "W@I500237@",
+   "W@I500428@",
+   "W@I500525@",
+   "W@I500526@"
+  ],
+  "places": [
+   [
+    "Aynho, Northamptonshire: the Bortons' village",
+    51.9946,
+    -1.2465
+   ],
+   [
+    "Painswick, Gloucestershire: the Woolmans' home town",
+    51.7866,
+    -2.1943
+   ],
+   [
+    "Hillsdown, the Borton farm on the Rancocas (Mount Laurel, NJ)",
+    39.965,
+    -74.88
+   ],
+   [
+    "Rancocas Friends burial ground: John and Elizabeth Woolman",
+    40.0104,
+    -74.8574
+   ],
+   [
+    "West Nottingham Meeting, where Tamar grew up and married",
+    39.6985,
+    -76.0569
+   ]
+  ]
+ },
+ "John Woolman: Tamar's cousin who spoke against slavery": {
+  "from": "Tamar Allen's Quaker roots: the Bortons of Aynho, the Woolmans of Painswick, and a cousin who spoke against slavery",
+  "start": "**The cousin who spoke against slavery.**",
+  "end": "*Sources:",
+  "quest": "Tamar Allen's first cousin, the Quaker who spent his life persuading slaveholders to free the people they held",
+  "people": [
+   "W@I500224@",
+   "W@I500200@"
+  ],
+  "places": [
+   [
+    "Rancocas, NJ: John Woolman born on the family farm, 1720",
+    40.0104,
+    -74.8574
+   ],
+   [
+    "Mount Holly: Woolman's tailor shop and the John Woolman Memorial",
+    39.9929,
+    -74.7876
+   ],
+   [
+    "York, England: Woolman died of smallpox, 7 Oct 1772",
+    53.959,
+    -1.0815
+   ]
+  ]
+ },
+ "Aaron Burr's treason trial and the Underwood in the jury pool": {
+  "from": "The older Robards: a lot at the falls of the James, 6,000 acres in Kentucky, and Andrew Jackson's rival",
+  "start": "**The uncle on Aaron Burr",
+  "end": "*Sources:",
+  "intro": "In 1807 the former vice president **Aaron Burr** stood trial at Richmond for treason, accused of plotting to carve an empire out of the western territories. Chief Justice John Marshall presided, and on 1 September the jury found him not guilty; a second trial on a lesser charge followed that month. Picking jurors who hadn't already made up their minds was nearly impossible, because the whole country had been reading about the plot for a year. One of the men called was very likely the brother of Kristin's 6th great-grandmother **Hannah Underwood**. (Burr turns up in family lore too: Marion County, Kentucky tradition says he once stopped at Daniel Everhart's house near Lebanon, though that's a legend, not a record.)",
+  "quest": "A Goochland planter called for Aaron Burr's jury, and Burr challenged him in open court",
+  "people": [
+   "W@I500164@",
+   "W@I500169@"
+  ],
+  "places": [
+   [
+    "Richmond: Burr's trial in the Virginia Capitol, 1807",
+    37.5387,
+    -77.4336
+   ],
+   [
+    "Lickinhole, Goochland County: Thomas Underwood's plantation",
+    37.7,
+    -77.95
+   ],
+   [
+    "Daniel Everhart's house near Lebanon, KY (Burr legend)",
+    37.55,
+    -85.21
+   ]
+  ]
  }
 }
