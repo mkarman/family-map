@@ -1078,5 +1078,167 @@
    94,
    40
   ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-213755.png",
+  "caption": "Thomas Rooney's government headstone: Co. A, 8th Kansas Infantry, died 25 Sept 1887 (Find a Grave)",
+  "people": [
+   "Frances Ruby Rooney"
+  ],
+  "place": [
+   39.28,
+   -94.9,
+   "Leavenworth National Cemetery, Kansas"
+  ],
+  "story": "William O. Callahan (about 1840–1892) and Frances Rooney",
+  "kind": "grave",
+  "crop": [
+   6.7,
+   19,
+   93.3,
+   76
+  ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-213003.png",
+  "caption": "William O. Callahan's monument, New Cathedral Cemetery, Baltimore (Find a Grave)",
+  "people": [
+   "William O. Callahan"
+  ],
+  "place": [
+   39.2905,
+   -76.683,
+   "New Cathedral Cemetery, Baltimore"
+  ],
+  "story": "William O. Callahan (about 1840–1892) and Frances Rooney",
+  "kind": "grave",
+  "crop": [
+   2,
+   19,
+   97,
+   76
+  ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-213100.png",
+  "caption": "Frances Callahan's stone: born 7 July 1852, died 5 Feb 1931 (Find a Grave)",
+  "people": [
+   "Frances Ruby Rooney"
+  ],
+  "place": [
+   39.2905,
+   -76.683,
+   "New Cathedral Cemetery, Baltimore"
+  ],
+  "story": "William O. Callahan (about 1840–1892) and Frances Rooney",
+  "kind": "grave",
+  "crop": [
+   0,
+   16,
+   100,
+   73
+  ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-213410.png",
+  "caption": "The Callahan–Raphun wedding notice: married at St. Martin's parsonage, then off on a trip South",
+  "people": [
+   "Edith B Raphun",
+   "Edward J Callahan"
+  ],
+  "place": [
+   39.2953,
+   -76.6466,
+   "St. Martin's Church, Fulton Ave., Baltimore"
+  ],
+  "story": "Edward J. Callahan and Edith Raphun",
+  "kind": "document",
+  "crop": [
+   0,
+   25.5,
+   100,
+   70
+  ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-213315.png",
+  "caption": "Edward J. Callahan's stone, Lorraine Park Cemetery (Find a Grave)",
+  "people": [
+   "Edward J Callahan"
+  ],
+  "place": [
+   39.3237,
+   -76.7445,
+   "Lorraine Park Cemetery, Woodlawn"
+  ],
+  "story": "Edward J. Callahan and Edith Raphun",
+  "kind": "grave",
+  "crop": [
+   0,
+   28,
+   100,
+   67
+  ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-213525.png",
+  "caption": "William C. Gordon's veteran's marker: Pvt., U.S. Marine Corps and U.S. Army, World Wars I and II",
+  "people": [
+   "William Charles Gordon"
+  ],
+  "place": [
+   39.4426,
+   -76.7957,
+   "Garrison Forest Veterans Cemetery, Owings Mills"
+  ],
+  "story": "William Charles Gordon (1900–1989), two-war veteran",
+  "kind": "grave",
+  "crop": [
+   0,
+   30.7,
+   100,
+   64.5
+  ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-154500.png",
+  "caption": "William Gordon's death notice, 1 August 1941",
+  "people": [
+   "William Gordon"
+  ],
+  "place": [
+   39.31,
+   -76.64,
+   "Baltimore, Maryland"
+  ],
+  "story": "William Gordon (1868–1941), from Chicago",
+  "kind": "document",
+  "crop": [
+   0,
+   41.8,
+   100,
+   58
+  ]
+ },
+ {
+  "file": "family-tree-audit/karman-side/docs/screenshots-2026-11-24/Screenshot_20261122-155211.png",
+  "caption": "The Gordon crypt fronts at Lorraine Park: Annie L. Gordon, William Gordon, Mary E. Gwin",
+  "people": [
+   "William Gordon",
+   "Annie Louretta Deveney"
+  ],
+  "place": [
+   39.3237,
+   -76.7445,
+   "Lorraine Park Cemetery, Woodlawn"
+  ],
+  "story": "William Gordon (1868–1941), from Chicago",
+  "kind": "grave",
+  "crop": [
+   0,
+   41.5,
+   100,
+   53.7
+  ]
  }
 ]
