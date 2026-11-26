@@ -480,25 +480,12 @@
    ]
   ]
  },
- "The Robards: a Revolutionary sergeant, a sheriff, and a house called Thornwood": {
+ "William Robards Jr.: a Revolutionary sergeant": {
   "people": [
-   "Eleanor W. Robards",
-   "George Caldwell Robards",
-   "Younger Pitts Robards",
-   "Otho Singleton Robards",
-   "William Lewis Robards",
-   "Elizabeth Lewis",
-   "William Robards",
-   "W@I500030@",
-   "W@I500056@",
-   "W@I500064@",
-   "W@I500105@",
-   "W@I500106@",
    "W@I500147@",
-   "W@I500148@",
+   "Elizabeth Lewis",
    "W@I500153@",
-   "W@I500161@",
-   "W@I500434@"
+   "W@I500105@"
   ],
   "places": [
    [
@@ -507,41 +494,22 @@
     -77.92
    ],
    [
-    "Thornwood, Jessamine County, Kentucky",
-    37.88,
-    -84.57
-   ],
-   [
     "Camden, South Carolina",
     34.247,
     -80.607
    ]
   ]
  },
- "The older Robards: a lot at the falls of the James, 6,000 acres in Kentucky, and Andrew Jackson's rival": {
+ "John Robards (died 1755): a lot at the falls of the James": {
   "people": [
-   "William Robards",
-   "William Lewis",
-   "Hannah Underwood",
-   "Thomas Underwood",
-   "John Robards, I",
-   "W@I500147@",
-   "W@I500148@",
-   "W@I500153@",
-   "W@I500164@",
-   "W@I500169@",
-   "W@I500176@"
+   "W@I500155@",
+   "W@I500153@"
   ],
   "places": [
    [
     "Goochland County, Virginia (falls of the James)",
     37.62,
     -77.7
-   ],
-   [
-    "Mercer County, Kentucky",
-    37.81,
-    -84.87
    ]
   ]
  },
@@ -598,7 +566,7 @@
    ]
   ]
  },
- "The Woermanns, and the cousin who married Charles Eames": {
+ "Henry W. Woermann and Catherine Schwiering of St. Louis": {
   "people": [
    "Catherine Maria Schwiering",
    "Christian Schwiering",
@@ -620,17 +588,11 @@
     -90.199
    ],
    [
-    "Harpendorf, Damme: Anna Maria Haskamp born 1815",
-    52.53,
-    8.17
-   ],
-   [
     "St. Peter's Cemetery, Normandy: Christian and Anna Maria Schwiering",
     38.705,
     -90.28
    ]
-  ],
-  "quest": "The Woermann cousin who married the designer Charles Eames"
+  ]
  },
  "Uncle Robert: the brother who didn't come home": {
   "people": [
@@ -849,7 +811,7 @@
    ]
   ]
  },
- "Col. Charles W. Raphun (1842–1903) and his aunt who knew Poe": {
+ "Col. Charles W. Raphun (1842–1903)": {
   "people": [
    "Charles W. Raphun",
    "Emma Sophia Boyd",
@@ -925,10 +887,8 @@
    ]
   ]
  },
- "William O. Callahan (about 1840–1892) and Frances Rooney": {
+ "William O. Callahan (about 1840–1892)": {
   "people": [
-   "William O. Callahan",
-   "Frances Ruby Rooney",
    "K@I500031@",
    "K@I500032@"
   ],
@@ -937,11 +897,6 @@
     "Baltimore, Maryland",
     39.29,
     -76.612
-   ],
-   [
-    "Leavenworth, Kansas",
-    39.311,
-    -94.922
    ]
   ]
  },
@@ -983,27 +938,16 @@
    ]
   ]
  },
- "Michael and Bridget Deveney, and the Grogans of Lancashire": {
+ "Michael Deveney (died 1899)": {
   "people": [
-   "Michael Deveney",
-   "Bridget Burk",
-   "Lawrence Grogan",
-   "K@I500035@",
    "K@I500036@",
-   "K@I500044@",
-   "K@I500042@",
-   "K@I500043@"
+   "K@I500035@"
   ],
   "places": [
    [
     "St. Vincent de Paul, Baltimore",
     39.291,
     -76.606
-   ],
-   [
-    "Lancashire, England",
-    53.76,
-    -2.7
    ]
   ]
  },
@@ -1180,28 +1124,13 @@
    ]
   ]
  },
- "The Glandings and the Hunters of Caroline County": {
+ "George W. Glanding and Wilhelmina Carter of Queen Anne's County": {
   "people": [
-   "John Henry Glanding",
-   "Mary Lena Hunter",
-   "Joseph Hunter",
-   "George W Glanding",
-   "Wilhelmina Carter",
-   "K@I500023@",
-   "K@I500024@",
-   "K@I500025@",
-   "K@I500026@",
    "K@I500058@",
    "K@I500059@",
-   "K@I500062@",
-   "K@I500007@"
+   "K@I500023@"
   ],
   "places": [
-   [
-    "Caroline County, Maryland",
-    38.87,
-    -75.83
-   ],
    [
     "Queen Anne's County, Maryland",
     39.04,
@@ -1228,17 +1157,10 @@
    ]
   ]
  },
- "The Hursts and Dulins of Fairfax: two wills from the 1780s": {
+ "John Hurst (1713–1789) of Accotink Run": {
   "people": [
    "W@I500326@",
-   "Sarah Hurst",
-   "Edward Dulin",
-   "Sarah Sally Dulin",
-   "W@I500174@",
-   "W@I500175@",
-   "W@I500316@",
-   "W@I500317@",
-   "W@I500327@"
+   "W@I500317@"
   ],
   "places": [
    [
@@ -1247,24 +1169,14 @@
     -77.22
    ],
    [
-    "Falls Church: Fairfax Parish, 1765",
-    38.882,
-    -77.171
-   ],
-   [
     "Alexandria: Fairfax County court, will proved 1789",
     38.805,
     -77.047
-   ],
-   [
-    "Nelson County, Kentucky (Sally Dulin Stone)",
-    37.91,
-    -85.32
    ]
   ]
  },
  "Kate Bleakley: the aunt who knew Edgar Allan Poe": {
-  "from": "Col. Charles W. Raphun (1842–1903) and his aunt who knew Poe",
+  "from": "Kate (Blakely) Henderson (1816–?): the Colonel's aunt who knew Poe",
   "start": "**The aunt and the poet.**",
   "end": "$",
   "intro": "**Kate Bleakley** was very likely the older sister of Michael's 4th great-grandmother **Louisa (Blakely) Raphun**. In old age she told a Baltimore newspaper that the young Edgar Allan Poe had written her love letters.",
@@ -1292,7 +1204,7 @@
   ]
  },
  "Lewis Robards, Rachel Donelson and Andrew Jackson": {
-  "from": "The older Robards: a lot at the falls of the James, 6,000 acres in Kentucky, and Andrew Jackson's rival",
+  "from": "William Robards Sr. (about 1729–1783): 6,000 acres in Kentucky, and Andrew Jackson's rival",
   "start": "**The half-uncle in the history books.**",
   "end": "**The half-aunt",
   "quest": "A Robards uncle whose broken marriage became a presidential scandal",
@@ -1318,7 +1230,7 @@
   ]
  },
  "Jack Jouett's ride and the Robards aunt who married him": {
-  "from": "The older Robards: a lot at the falls of the James, 6,000 acres in Kentucky, and Andrew Jackson's rival",
+  "from": "William Robards Sr. (about 1729–1783): 6,000 acres in Kentucky, and Andrew Jackson's rival",
   "start": "**The half-aunt who married a hero of the Revolution.**",
   "end": "**The uncle on Aaron Burr",
   "quest": "Sally Robards married the man who saved Thomas Jefferson from capture",
@@ -1361,12 +1273,10 @@
    ]
   ]
  },
- "The Koetters in World War II: Melvin, Oliver, and a sister in Seattle": {
+ "Melvin Koetter (born 1924) in World War II": {
   "quest": "Donna's uncles in uniform in World War II, and an aunt who died far from home",
   "people": [
    "W@I500031@",
-   "W@I500073@",
-   "W@I500075@",
    "W@I500029@",
    "W@I500069@"
   ],
@@ -1375,16 +1285,6 @@
     "7101 Lexington, Normandy Township: the Koetter home in 1940",
     38.716,
     -90.292
-   ],
-   [
-    "Shreve Avenue, north St. Louis: Oliver's home",
-    38.68,
-    -90.23
-   ],
-   [
-    "Seattle: Mildred died here in 1953",
-    47.6062,
-    -122.3321
    ],
    [
     "Wright City, Missouri: Melvin died here in 2021",
@@ -1465,7 +1365,7 @@
   ]
  },
  "Aaron Burr's treason trial and the Underwood in the jury pool": {
-  "from": "The older Robards: a lot at the falls of the James, 6,000 acres in Kentucky, and Andrew Jackson's rival",
+  "from": "William Robards Sr. (about 1729–1783): 6,000 acres in Kentucky, and Andrew Jackson's rival",
   "start": "**The uncle on Aaron Burr",
   "end": "*Sources:",
   "intro": "In 1807 the former vice president **Aaron Burr** stood trial at Richmond for treason, accused of plotting to carve an empire out of the western territories. Chief Justice John Marshall presided, and on 1 September the jury found him not guilty; a second trial on a lesser charge followed that month. Picking jurors who hadn't already made up their minds was nearly impossible, because the whole country had been reading about the plot for a year. One of the men called was very likely the brother of Kristin's 6th great-grandmother **Hannah Underwood**. (Burr turns up in family lore too: Marion County, Kentucky tradition says he once stopped at Daniel Everhart's house near Lebanon, though that's a legend, not a record.)",
@@ -1492,18 +1392,10 @@
    ]
   ]
  },
- "From Dutch Brazil to the Kentucky frontier: the Polhemus, Sebring and Bodine families": {
+ "Johannes Theodorus Polhemus: from the Palatinate and Dutch Brazil to Flatbush": {
   "people": [
    "W@I500379@",
-   "W@I500380@",
-   "W@I500325@",
-   "W@I500324@",
-   "W@I500158@",
-   "W@I500313@",
-   "W@I500149@",
-   "W@I500129@",
-   "W@I500065@",
-   "W@I500110@"
+   "W@I500325@"
   ],
   "places": [
    [
@@ -1535,26 +1427,6 @@
     "Flatbush Reformed Dutch Church, Brooklyn",
     40.6505,
     -73.9583
-   ],
-   [
-    "Bergen, New Jersey: the Sebrings from 1681",
-    40.7282,
-    -74.0776
-   ],
-   [
-    "Six Mile Run, Somerset County, NJ: Jacob and Elizabeth Bodine",
-    40.4651,
-    -74.5582
-   ],
-   [
-    "Loudoun County, Virginia: Cornelius and Isaac Bodine",
-    39.08,
-    -77.64
-   ],
-   [
-    "Nelson County, Kentucky: Isaac Bodine dies, 1818",
-    37.8,
-    -85.47
    ]
   ]
  },
@@ -1676,7 +1548,7 @@
    ]
   ]
  },
- "The zur Oevestes of Bramsche: from the Varus battlefield to a cooper's shop in St. Louis": {
+ "The zur Oevestes of Bramsche: a name that came with the farm": {
   "people": [
    "W@I500309@",
    "W@I500430@",
@@ -1689,34 +1561,9 @@
     7.995
    ],
    [
-    "Bramsche church: 1829 marriage, Lisette baptized 1848",
-    52.408,
-    7.982
-   ],
-   [
     "Kalkriese: site of the Varus battle, 9 AD",
     52.408,
     8.13
-   ],
-   [
-    "Bremen: sailed 1852",
-    53.079,
-    8.802
-   ],
-   [
-    "New Orleans: landed 23 Oct 1852",
-    29.951,
-    -90.071
-   ],
-   [
-    "2507 N. 12th St, St. Louis: Kathrina's home, 1875",
-    38.6545,
-    -90.197
-   ],
-   [
-    "1952 N. Broadway, St. Louis: Catharina died 1884",
-    38.648,
-    -90.189
    ]
   ]
  },
@@ -1818,6 +1665,329 @@
     "Bethel Methodist Cemetery, Montgomery City, MO",
     38.977,
     -91.505
+   ]
+  ]
+ },
+ "Timothy Schlesinger (1834–1906): Burt County's young justice of the peace": {
+  "people": [],
+  "places": [
+   [
+    "Burt County, Nebraska",
+    41.85,
+    -96.33
+   ]
+  ]
+ },
+ "Mathilda Schlesinger and Henry Reitze: Denver's first bakery": {
+  "people": [],
+  "places": [
+   [
+    "City Bakery, Auraria (Denver)",
+    39.746,
+    -105.004
+   ]
+  ]
+ },
+ "Anna Schlesinger and Billy Wise: a saddler's dime-novel life": {
+  "people": [],
+  "places": [
+   [
+    "Cache la Poudre army camps, 1857",
+    40.6,
+    -105.0
+   ]
+  ]
+ },
+ "Sebald Schlesinger (1843–1918): a bugler on the Platte River Road": {
+  "people": [],
+  "places": [
+   [
+    "Platte River Road, Nebraska",
+    40.67,
+    -99.08
+   ]
+  ]
+ },
+ "Oliver W. Koetter (1906–1973): drafted at 37": {
+  "people": [
+   "W@I500073@",
+   "W@I500069@"
+  ],
+  "places": [
+   [
+    "Shreve Avenue, north St. Louis: Oliver's home",
+    38.68,
+    -90.23
+   ]
+  ]
+ },
+ "Mildred Ann Koetter (1912–1953): a sister in Seattle": {
+  "people": [
+   "W@I500075@",
+   "W@I500069@"
+  ],
+  "places": [
+   [
+    "Seattle: Mildred died here in 1953",
+    47.6062,
+    -122.3321
+   ]
+  ]
+ },
+ "Otho Singleton Robards (1794–1857): a sheriff and a house called Thornwood": {
+  "people": [
+   "W@I500105@",
+   "W@I500064@",
+   "W@I500056@",
+   "W@I500030@"
+  ],
+  "places": [
+   [
+    "Thornwood, Jessamine County, Kentucky",
+    37.88,
+    -84.57
+   ]
+  ]
+ },
+ "William Robards Sr. (about 1729–1783): 6,000 acres in Kentucky, and Andrew Jackson's rival": {
+  "people": [
+   "W@I500153@",
+   "W@I500147@",
+   "William Lewis",
+   "Hannah Underwood",
+   "Thomas Underwood"
+  ],
+  "places": [
+   [
+    "Goochland County, Virginia",
+    37.72,
+    -77.92
+   ],
+   [
+    "Mercer County, Kentucky",
+    37.81,
+    -84.87
+   ]
+  ]
+ },
+ "Jan Roelofsen Sebring and Adrianna Polhemus of Flatbush": {
+  "people": [
+   "W@I500325@",
+   "W@I500158@"
+  ],
+  "places": [
+   [
+    "Flatbush Reformed Dutch Church, Brooklyn",
+    40.6505,
+    -73.9583
+   ],
+   [
+    "Bergen, New Jersey: the Sebrings from 1681",
+    40.7282,
+    -74.0776
+   ]
+  ]
+ },
+ "Jacob Bodine and Elizabeth Sebring: Huguenots on the way to Kentucky": {
+  "people": [
+   "W@I500313@",
+   "W@I500158@",
+   "W@I500149@",
+   "W@I500129@",
+   "W@I500110@"
+  ],
+  "places": [
+   [
+    "Six Mile Run, Somerset County, NJ: Jacob and Elizabeth Bodine",
+    40.4651,
+    -74.5582
+   ],
+   [
+    "Loudoun County, Virginia: Cornelius and Isaac Bodine",
+    39.08,
+    -77.64
+   ],
+   [
+    "Nelson County, Kentucky: Isaac Bodine dies, 1818",
+    37.8,
+    -85.47
+   ]
+  ]
+ },
+ "Edward Dulin (about 1719–1782) and Sarah Hurst": {
+  "people": [
+   "W@I500316@",
+   "W@I500317@",
+   "W@I500175@"
+  ],
+  "places": [
+   [
+    "Fairfax County, Virginia (Hurst and Dulin farms)",
+    38.8,
+    -77.22
+   ],
+   [
+    "Falls Church: Fairfax Parish, 1765",
+    38.882,
+    -77.171
+   ],
+   [
+    "Nelson County, Kentucky (Sally Dulin Stone)",
+    37.91,
+    -85.32
+   ]
+  ]
+ },
+ "Anna Maria Haskamp (born 1815) of Harpendorf": {
+  "people": [
+   "W@I500299@",
+   "W@I500415@",
+   "W@I500298@"
+  ],
+  "places": [
+   [
+    "Harpendorf, Damme: Anna Maria Haskamp born 1815",
+    52.53,
+    8.17
+   ],
+   [
+    "St. Peter's Cemetery, Normandy: Christian and Anna Maria Schwiering",
+    38.705,
+    -90.28
+   ]
+  ]
+ },
+ "Frederick C. Woermann and the cousin who married Charles Eames": {
+  "people": [
+   "W@I500680@",
+   "W@I500057@"
+  ],
+  "places": [
+   [
+    "7 Arundel Place, St. Louis",
+    38.6455,
+    -90.2955
+   ]
+  ],
+  "quest": "The Woermann cousin who married the designer Charles Eames"
+ },
+ "Hermann Rudolph zur Oeveste (1799–before 1869) and Catharina: from Bramsche to St. Louis": {
+  "people": [
+   "W@I500309@",
+   "W@I500430@"
+  ],
+  "places": [
+   [
+    "Bramsche church: 1829 marriage, Lisette baptized 1848",
+    52.408,
+    7.982
+   ],
+   [
+    "Bremen: sailed 1852",
+    53.079,
+    8.802
+   ],
+   [
+    "New Orleans: landed 23 Oct 1852",
+    29.951,
+    -90.071
+   ],
+   [
+    "2507 N. 12th St, St. Louis: Kathrina's home, 1875",
+    38.6545,
+    -90.197
+   ],
+   [
+    "1952 N. Broadway, St. Louis: Catharina died 1884",
+    38.648,
+    -90.189
+   ]
+  ]
+ },
+ "Kate (Blakely) Henderson (1816–?): the Colonel's aunt who knew Poe": {
+  "people": [
+   "K@I500038@",
+   "K@I500033@"
+  ],
+  "places": [
+   [
+    "903 N. Fulton Avenue, Baltimore: Kate's home, 1903",
+    39.2995,
+    -76.6455
+   ]
+  ]
+ },
+ "Frances Rooney (1852–1931): a girl from the frontier": {
+  "people": [
+   "K@I500032@"
+  ],
+  "places": [
+   [
+    "Fort Leavenworth, Kansas",
+    39.35,
+    -94.92
+   ],
+   [
+    "Leavenworth, Kansas",
+    39.311,
+    -94.922
+   ]
+  ]
+ },
+ "Thomas Rooney (about 1821–1887): baker and soldier at Fort Leavenworth": {
+  "people": [
+   "K@I500032@"
+  ],
+  "places": [
+   [
+    "Leavenworth, Kansas",
+    39.311,
+    -94.922
+   ]
+  ]
+ },
+ "Bridget (Burke) Deveney (1858–1929): from Rochdale to Baltimore, and the Grogans of Lancashire": {
+  "people": [
+   "K@I500035@",
+   "K@I500046@",
+   "K@I500042@",
+   "K@I500044@"
+  ],
+  "places": [
+   [
+    "Rose Street, Castleton, Rochdale: the Burkes in 1861",
+    53.598,
+    -2.161
+   ],
+   [
+    "6 Richard Street, Castleton, Rochdale: the Grogans in 1861",
+    53.598,
+    -2.16
+   ],
+   [
+    "Baltimore: the Carroll lands Michael and Bridget, 1868",
+    39.27,
+    -76.58
+   ],
+   [
+    "St. Vincent de Paul, Baltimore",
+    39.291,
+    -76.606
+   ]
+  ]
+ },
+ "John Henry Glanding (1863–1919) and Mary Lena Hunter of Caroline County": {
+  "people": [
+   "K@I500023@",
+   "K@I500024@",
+   "K@I500025@",
+   "K@I500007@"
+  ],
+  "places": [
+   [
+    "Caroline County, Maryland",
+    38.87,
+    -75.83
    ]
   ]
  }
