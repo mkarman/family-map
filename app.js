@@ -274,11 +274,15 @@
   function eventMarker(p, e, num) {
     const approx = PREC[e.prec];
     const sz = num ? 22 : 12;
+    const ph = e.photo && PH[e.photo];
+    const icon = ph
+      ? L.divIcon({ className: '', html: `<div class="photo-pin ev-photo" style="width:40px;height:40px;border-color:${colorOf(p)}"><img src="${ph.thumb}" alt="" loading="lazy">${num ? `<b class="ev-num">${num}</b>` : ''}</div>`, iconSize: [40, 40], iconAnchor: [20, 20], popupAnchor: [0, -18] })
+      : L.divIcon({ className: '', html: `<div class="ev-pin${approx ? ' approx' : ''}" style="width:${sz}px;height:${sz}px${num ? '' : ';background:' + colorOf(p) + (approx ? ';opacity:.6' : '')}">${num || ''}</div>`, iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2], popupAnchor: [0, -6] });
     const m = L.marker(e.ll, {
-      icon: L.divIcon({ className: '', html: `<div class="ev-pin${approx ? ' approx' : ''}" style="width:${sz}px;height:${sz}px${num ? '' : ';background:' + colorOf(p) + (approx ? ';opacity:.6' : '')}">${num || ''}</div>`, iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2], popupAnchor: [0, -6] }),
+      icon,
       title: `${p.name}: ${evLabel(e)}`
     });
-    m.bindPopup(`<h4><a data-person="${p.id}">${esc(p.name)}</a></h4>${esc(evLabel(e))}<br>${esc(e.place)}${e.note ? '<br><i>' + esc(e.note) + '</i>' : ''}${approx ? `<br><small>(${approx})</small>` : ''}${streetLink(e.place)}`);
+    m.bindPopup(`<h4><a data-person="${p.id}">${esc(p.name)}</a></h4>${esc(evLabel(e))}<br>${esc(e.place)}${e.note ? '<br><i>' + esc(e.note) + '</i>' : ''}${approx ? `<br><small>(${approx})</small>` : ''}${streetLink(e.place)}${ph ? `<div class="pop-thumbs"><img src="${ph.thumb}" data-photo="${ph.id}" alt="" style="width:120px;height:120px"></div><small>${esc(ph.caption)}</small>` : ''}`);
     return m;
   }
 
@@ -325,7 +329,8 @@
         const line = evs.map(e => e.ll);
         if (line.length > 1) layers.path.addLayer(L.polyline(line, { color: '#7a4b2a', weight: 2, dashArray: '5 6', opacity: .7 }));
       }
-      if (show.photos) (p.photos || []).map(id => PH[id]).filter(ph => ph.ll).forEach(ph => { layers.path.addLayer(photoMarker(ph)); pts.push(ph.ll); });
+      const onPins = new Set(show.events ? evs.map(e => e.photo).filter(Boolean) : []);
+      if (show.photos) (p.photos || []).filter(id => !onPins.has(id)).map(id => PH[id]).filter(ph => ph.ll).forEach(ph => { layers.path.addLayer(photoMarker(ph)); pts.push(ph.ll); });
       if (show.stories) (p.stories || []).map(id => S[id]).forEach(s => storyMarkers(s).forEach(m => { layers.path.addLayer(m); pts.push(m.getLatLng()); }));
       const n = (p.photos || []).length, ns = (p.stories || []).length;
       $('#filter-banner').innerHTML = `<span>Showing <b>${esc(p.name)}</b>: ${evs.length} place${evs.length === 1 ? '' : 's'}, ${n} photo${n === 1 ? '' : 's'}, ${ns} stor${ns === 1 ? 'y' : 'ies'}</span><button id="clear-sel">Show everyone</button>`;

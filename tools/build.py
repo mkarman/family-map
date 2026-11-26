@@ -291,6 +291,34 @@ for n, c in enumerate(PHOTO_CFG):
     if st: ph['story'] = st['id']; st['photos'].append(ph['id'])
     photos.append(ph)
 note(f'Photos: {len(photos)}')
+# ---------- pin photos: a grave/cemetery photo goes on the person's burial pin, a house/place photo on the nearest life-event pin ----------
+def _km(a, b):
+    import math
+    dy = (a[0] - b[0]) * 111; dx = (a[1] - b[1]) * 111 * math.cos(math.radians(a[0])); return (dx * dx + dy * dy) ** .5
+for ph in photos:
+    k = ph['kind']
+    if k not in ('grave', 'cemetery', 'house'): continue
+    for pid in ph['people']:
+        evs = people.get(pid, {}).get('events')
+        if evs is None: continue
+        if k in ('grave', 'cemetery'):
+            tgt = [e for e in evs if e['t'] == 'Buried'][:1]
+            if tgt and ph.get('ll') and tgt[0].get('ll') and _km(tgt[0]['ll'], ph['ll']) > 60:
+                note(f'  pin photo skipped (far from burial place): {ph["caption"]} / {people[pid]["name"]}'); continue
+            if not tgt:  # no burial event: add one at the photo's place
+                if not ph.get('ll'): continue
+                e = {'t': 'Buried', 'date': '', 'place': ph.get('place', ''), 'll': ph['ll'], 'prec': 'exact'}; evs.append(e); tgt = [e]
+        else:
+            if not ph.get('ll'): continue
+            near = sorted((e for e in evs if e.get('ll')), key=lambda e: _km(e['ll'], ph['ll']))
+            tgt = [e for e in near[:1] if _km(e['ll'], ph['ll']) < 5]
+        for e in tgt:
+            cur = next((p for p in photos if p['id'] == e.get('photo')), None)
+            if cur and (cur['kind'] == 'grave' or k == 'cemetery'): continue  # a grave photo beats a gate/church photo
+            e['photo'] = ph['id']
+            if ph.get('ll') and e.get('prec') != 'exact': e['ll'] = ph['ll']; e['prec'] = 'exact'
+            if not ph.get('ll') and e.get('ll'): ph['ll'] = e['ll']; ph['place'] = e.get('place', '')
+
 for f in sorted(glob.glob(os.path.join(AUD, 'documents/photos/**/*.*'), recursive=True)):
     if f.lower().endswith(('.jpg', '.jpeg', '.png')) and os.path.normpath(f) not in used and not any('/' + d + '/' in f for d in PRIV['skip_photo_folders']) and os.path.basename(f) not in PRIV.get('skip_photos', []):
         note(f'Photo not on the site yet (add to photos.json?): {os.path.relpath(f, PROJ)}')
