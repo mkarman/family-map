@@ -576,7 +576,7 @@
   "file": "family-tree-audit/documents/mueller/robert-j-mueller-jr-newspaper-photo.jpg",
   "caption": "S/Sgt. Robert J. Mueller Jr., B-24 gunner, 566th Bomb Squadron",
   "people": [
-   "Robert Julius Mueller"
+   "W@I500145@"
   ],
   "place": [
    38.627,
@@ -590,7 +590,7 @@
   "file": "family-tree-audit/documents/mueller/robert-j-mueller-jr-headstone-jefferson-barracks.jpg",
   "caption": "Robert J. Mueller Jr.'s headstone, Jefferson Barracks National Cemetery",
   "people": [
-   "Robert Julius Mueller"
+   "W@I500145@"
   ],
   "place": [
    38.497,
@@ -1259,6 +1259,353 @@
    19,
    98,
    76
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/bowen-moon/moon-house-fallsington-photo.jpg",
+  "caption": "The Moon family's log house at Fallsington, Bucks County, Pennsylvania",
+  "people": [
+   "W@I500387@"
+  ],
+  "story": "The Bowens and the Moons: from Penn's colony to the Virginia frontier",
+  "kind": "house",
+  "place": [
+   40.192,
+   -74.822,
+   "Fallsington, Bucks County, Pennsylvania"
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/bowen-moon/old-opequon-cemetery-gate.jpg",
+  "caption": "The gate of Old Opequon Cemetery, Kernstown, Virginia",
+  "people": [
+   "W@I500263@"
+  ],
+  "story": "The Bowens and the Moons: from Penn's colony to the Virginia frontier",
+  "kind": "cemetery",
+  "place": [
+   39.137,
+   -78.198,
+   "Old Opequon Cemetery, Kernstown, Virginia"
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/buckingham/1794-john-buckingham-headstone-findagrave.png",
+  "caption": "Pvt. John Buckingham's headstone (1741–1794), Franklin Cemetery, Marianna, Pennsylvania (Find a Grave)",
+  "people": [
+   "W@I500239@"
+  ],
+  "story": "The Buckinghams: a colonel, a cloth factory, and a DAR line",
+  "kind": "grave",
+  "crop": [
+   2,
+   16,
+   96,
+   71
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/buckingham/1833-isaac-buckingham-headstone-findagrave-15029091.jpg",
+  "caption": "Isaac Buckingham's headstone: \"departed this life the 11th day of April 1833\"",
+  "people": [
+   "W@I500230@"
+  ],
+  "story": "The Buckinghams: a colonel, a cloth factory, and a DAR line",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/buckingham/1850-hannah-heaton-buckingham-headstone-shaled-franklin-cem.jpg",
+  "caption": "Hannah Heaton Buckingham's weathered headstone, Franklin Cemetery",
+  "people": [
+   "W@I500231@"
+  ],
+  "story": "The Buckinghams: a colonel, a cloth factory, and a DAR line",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/buckingham/1878-jane-dalrymple-buckingham-headstone-closeup.jpg",
+  "caption": "Jane Dalrymple Buckingham's headstone: born May 15, 1797, died Feb. 25, 1878, \"We miss thee\"",
+  "people": [
+   "W@I500227@"
+  ],
+  "story": "The Buckinghams: a colonel, a cloth factory, and a DAR line",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/mcclenathan/myheritage-tree-photos/john-buckingham-headstone-1882.png",
+  "caption": "John Buckingham's headstone (1797–1882)",
+  "people": [
+   "W@I500226@"
+  ],
+  "story": "The Buckinghams: a colonel, a cloth factory, and a DAR line",
+  "kind": "grave",
+  "crop": [
+   2,
+   21,
+   98,
+   74
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/dalrymple/1775-joseph-dalrymple-headstone.png",
+  "caption": "Joseph Dalrymple's headstone (died 1775), Succasunna, New Jersey",
+  "people": [
+   "W@I500259@"
+  ],
+  "story": "The Buckinghams: a colonel, a cloth factory, and a DAR line",
+  "kind": "grave",
+  "crop": [
+   4,
+   15,
+   88,
+   69
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/ellis/robert-ellis-headstone-original-masonic.jpg",
+  "caption": "Robert Ellis's original headstone, with the Masonic square and compass: died Dec. 25, 1849",
+  "people": [
+   "W@I500278@"
+  ],
+  "story": "Robert Ellis: shot in the heel, wounded at Eutaw Springs, and still asking for his pension at 86",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/ellis/robert-ellis-headstone-va-sc-mil.jpg",
+  "caption": "Robert Ellis's government marker: Pvt., S.C. Militia, Revolutionary War",
+  "people": [
+   "W@I500278@"
+  ],
+  "story": "Robert Ellis: shot in the heel, wounded at Eutaw Springs, and still asking for his pension at 86",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/mcclenathan/william-mcclenathan-headstone-amity-1850.png",
+  "caption": "William McClenathan's headstone, Amity, Pennsylvania (1850)",
+  "people": [
+   "W@I500191@"
+  ],
+  "story": "The McClenathans and the Vandykes of Amity, Pennsylvania",
+  "kind": "grave",
+  "crop": [
+   2,
+   15,
+   98,
+   76
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/mcclenathan/myheritage-tree-photos/mary-wife-of-wm-mcclenathan-headstone-1852.png",
+  "caption": "\"Mary, wife of Wm. McClenathan\": Mary Dearth Coulson's headstone (1852)",
+  "people": [
+   "W@I500192@"
+  ],
+  "story": "The McClenathans and the Vandykes of Amity, Pennsylvania",
+  "kind": "grave",
+  "crop": [
+   2,
+   23,
+   98,
+   74
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/mcclenathan/vandyke-headstones-lower-ten-mile-son-1817-and-catherine-1850.png",
+  "caption": "Vandyke headstones at Lower Ten Mile Cemetery, Amity, including Catherine Bedell Vandyke",
+  "people": [
+   "W@I500719@"
+  ],
+  "story": "The McClenathans and the Vandykes of Amity, Pennsylvania",
+  "kind": "grave",
+  "place": [
+   39.97,
+   -80.2,
+   "Lower Ten Mile Cemetery, Amity, Pennsylvania"
+  ],
+  "crop": [
+   2,
+   15,
+   98,
+   70
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/mueller/robert-mueller-headstone-jefferson-barracks.jpg",
+  "caption": "Robert J. Mueller Sr.'s headstone, Jefferson Barracks: SFC, Missouri, World War I, 1892–1959",
+  "people": [
+   "W@I500079@"
+  ],
+  "story": "The Muellers and Schulers: a quarryman's son born in Alabama",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/screenshots-2026-11-16/smith/george-sophronia-lehman-headstone.png",
+  "caption": "George and Sophronia Lehman's headstone (Find a Grave)",
+  "people": [
+   "W@I500659@",
+   "W@I500660@"
+  ],
+  "story": "George and Joseph Lehman: two brothers in the 148th New York",
+  "kind": "grave",
+  "crop": [
+   2,
+   32,
+   98,
+   65
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/screenshots-2026-11-16/smith/jefferson-nancy-smith-headstone.png",
+  "caption": "Thomas Jefferson and Nancy Smith's headstone (Find a Grave)",
+  "people": [
+   "W@I500477@",
+   "W@I500478@"
+  ],
+  "story": "The Smiths of Varick",
+  "kind": "grave",
+  "crop": [
+   2,
+   20,
+   98,
+   76
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/screenshots-2026-11-16/mueller/caroline-schuler-headstone.png",
+  "caption": "Caroline Schuler's stone: \"Mother\" (Find a Grave)",
+  "people": [
+   "W@I500274@"
+  ],
+  "story": "The Muellers and Schulers: a quarryman's son born in Alabama",
+  "kind": "grave",
+  "crop": [
+   6,
+   41,
+   94,
+   66
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/screenshots-2026-11-16/woermann/woermann-headstone.png",
+  "caption": "The Woermann family headstone, St. Peter's Cemetery, Normandy (Find a Grave)",
+  "people": [
+   "W@I500296@",
+   "W@I500297@"
+  ],
+  "story": "The Woermanns, and the cousin who married Charles Eames",
+  "kind": "grave",
+  "crop": [
+   2,
+   21,
+   98,
+   75
+  ]
+ },
+ {
+  "file": "family-tree-audit/hoover-research/1902-eva-ritchie-hoover-headstone-singers-glen.jpg",
+  "caption": "\"Eva, wife of Hiram Hoover\": her headstone at Singers Glen, Virginia (1902)",
+  "people": [
+   "W@I500662@"
+  ],
+  "story": "The Ritchies and Fulks of Brock's Gap, Virginia",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/hoover-research/hiram-and-lydia-hoover-headstone-salem-mennonite.jpg",
+  "caption": "Hiram and Lydia Hoover's headstone, Salem Mennonite Cemetery, Elida, Ohio",
+  "people": [
+   "W@I500661@"
+  ],
+  "story": "Arthur Hoover: a bear hunt, a worn-out safety, and a man who took ten years off his age",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/hoover-research/philip-and-eve-ritchie-headstone-mountain-grove.jpg",
+  "caption": "Philip and Eve Ritchie's headstone, Mountain Grove, Fulks Run, Virginia",
+  "people": [
+   "W@I500665@",
+   "W@I500666@"
+  ],
+  "story": "The Ritchies and Fulks of Brock's Gap, Virginia",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/hoover-research/fulk-family-memorial-stone-fawley-fulk-cemetery.jpg",
+  "caption": "The Fulk family memorial stone, Fawley-Fulk Cemetery, Fulks Run, Virginia",
+  "people": [
+   "W@I500715@",
+   "W@I500716@"
+  ],
+  "story": "The Ritchies and Fulks of Brock's Gap, Virginia",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/pope-research/jacob-pope-headstone-front-1.jpg",
+  "caption": "Jacob Pope's headstone: born Oct. 4, 1818, died June 30, 1892",
+  "people": [
+   "W@I500248@"
+  ],
+  "story": "Jacob Pope: sixteen children, then three more",
+  "kind": "grave",
+  "place": [
+   39.03,
+   -87.17,
+   "Olive Branch Cemetery, Stockton Township, Greene County, Indiana"
+  ]
+ },
+ {
+  "file": "family-tree-audit/pope-research/mary-ellis-pope-headstone.jpg",
+  "caption": "Mary Ellis Pope's headstone, Olive Branch Cemetery",
+  "people": [
+   "W@I500249@"
+  ],
+  "story": "Jacob Pope: sixteen children, then three more",
+  "kind": "grave",
+  "place": [
+   39.03,
+   -87.17,
+   "Olive Branch Cemetery, Stockton Township, Greene County, Indiana"
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/robards/thornwood-otho-robards-house-history.png",
+  "caption": "Thornwood, the Robards house built in 1847 (drawing from a house history)",
+  "people": [
+   "W@I500105@"
+  ],
+  "story": "The Robards: a Revolutionary sergeant, a sheriff, and a house called Thornwood",
+  "kind": "house",
+  "place": [
+   37.88,
+   -84.57,
+   "Thornwood, Jessamine County, Kentucky"
+  ],
+  "crop": [
+   5,
+   23,
+   95,
+   53
+  ]
+ },
+ {
+  "file": "family-tree-audit/documents/white-stuart-1893/Screenshot_20261122-125747.png",
+  "caption": "The gate of Bethel Cemetery, Montgomery County, Missouri (Find a Grave)",
+  "people": [
+   "W@I500021@",
+   "W@I500022@"
+  ],
+  "story": "Vernon Koetter (1927–2018): the Navy, a season in Alaska, and McDonnell Douglas",
+  "kind": "cemetery",
+  "place": [
+   38.977,
+   -91.505,
+   "Bethel Methodist Cemetery, Montgomery City, Missouri"
+  ],
+  "crop": [
+   1,
+   35,
+   99,
+   68
   ]
  }
 ]
