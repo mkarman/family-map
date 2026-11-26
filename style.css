@@ -147,3 +147,6 @@ ul.tree.root{padding-left:4px}
 .story-pin.quest{background:#c9962a}
 .quest-tag{display:inline-block;background:#fbf1d9;color:#7a5a12;border:1px solid #e8cf8f;border-radius:999px;padding:2px 10px;font-size:.8rem;margin:0 0 6px}
 .chip small{color:#777}
+
+.story-place{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font:bold 11px/20px sans-serif;text-align:center;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.story-place.side-W{background:var(--w)}.story-place.side-K{background:var(--k)}

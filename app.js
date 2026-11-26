@@ -230,16 +230,29 @@
     m.on('click', () => openPhoto(ph.id, true));
     return m;
   }
+  // Each story gets ONE pin, at its main place (the first listed). Its other places
+  // appear as small markers only while that story is open in the drawer.
   function storyMarkers(s) {
-    return s.places.map(pl => {
-      const m = L.marker(pl.ll, {
-        icon: L.divIcon({ className: '', html: `<div class="story-pin side-${s.side}${s.quest ? ' quest' : ''}"><span>${s.quest ? '🧭' : '📖'}</span></div>`, iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -28] }),
-        title: s.title
-      });
-      const th = s.photos.slice(0, 4).map(id => `<img src="${PH[id].thumb}" data-photo="${id}" alt="">`).join('');
-      m.bindPopup(`${s.quest ? '<div class="quest-tag">🧭 Side quest</div>' : ''}<h4>${esc(s.title)}</h4><div>${esc(pl.label)}</div>${th ? `<div class="pop-thumbs">${th}</div>` : ''}<p><a data-story="${s.id}">Read the story →</a></p>`);
-      return m;
+    const pl = s.places.find(p => p.ll && p.ll[0] > -80);
+    if (!pl) return [];
+    const m = L.marker(pl.ll, {
+      icon: L.divIcon({ className: '', html: `<div class="story-pin side-${s.side}${s.quest ? ' quest' : ''}"><span>${s.quest ? '🧭' : '📖'}</span></div>`, iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -28] }),
+      title: s.title
     });
+    const th = s.photos.slice(0, 4).map(id => `<img src="${PH[id].thumb}" data-photo="${id}" alt="">`).join('');
+    const more = s.places.length - 1;
+    m.bindPopup(`${s.quest ? '<div class="quest-tag">🧭 Side quest</div>' : ''}<h4>${esc(s.title)}</h4><div>${esc(pl.label)}</div>${more > 0 ? `<div><small>+ ${more} more place${more === 1 ? '' : 's'} in this story, shown when you open it</small></div>` : ''}${th ? `<div class="pop-thumbs">${th}</div>` : ''}<p><a data-story="${s.id}">Read the story →</a></p>`);
+    return [m];
+  }
+  const storyPlaces = L.layerGroup();
+  function showStoryPlaces(s) {
+    storyPlaces.clearLayers();
+    s.places.forEach((pl, i) => {
+      if (!pl.ll || pl.ll[0] < -80) return;
+      L.marker(pl.ll, { icon: L.divIcon({ className: '', html: `<div class="story-place side-${s.side}">${i + 1}</div>`, iconSize: [20, 20], iconAnchor: [10, 10] }), title: pl.label, zIndexOffset: 500 })
+        .bindTooltip(esc(pl.label)).addTo(storyPlaces);
+    });
+    storyPlaces.addTo(map);
   }
   function fitTo(pts) {
     map.invalidateSize();
@@ -439,16 +452,18 @@
     if (hero) h += `<img class="hero" src="${hero.src}" data-photo="${hero.id}" alt="${esc(hero.caption)}"><p class="herocap">${esc(hero.caption)}</p>`;
     if (others.length) h += `<div class="thumbs">${others.map(id => `<img src="${PH[id].thumb}" data-photo="${id}" alt="${esc(PH[id].caption)}" title="${esc(PH[id].caption)}">`).join('')}</div>`;
     if (s.people.length) h += `<div class="people">${s.people.map(id => `<button class="chip" data-person="${id}" title="${esc(P[id].rel || '')}">${esc(P[id].name)}${!P[id].ahn && P[id].rel ? ` <small>(${esc(P[id].rel.replace(/^\w+'s /, ''))})</small>` : ''}</button>`).join('')}</div>`;
-    if (s.places.length) h += `<div class="places">📍 ${s.places.map((pl, i) => `<a data-goto="${pl.ll}">${esc(pl.label)}</a>`).join(' · ')}</div>`;
+    if (s.places.length) h += `<div class="places">📍 ${s.places.map((pl, i) => `<a data-goto="${pl.ll}">${i + 1}. ${esc(pl.label)}</a>`).join(' · ')}</div>`;
     h += `<div class="story">${s.html}</div>`;
     if (tour) h += tourBar.replace('class="tourbar"', 'class="tourbar end"');
     $('#drawer-body').innerHTML = h; $('#drawer').hidden = false; $('#drawer').scrollTop = 0;
     setHash('story=' + sid);
-    if (fromTour) flyToStory(s);
+    showStoryPlaces(s);
+    flyToStory(s);
   }
   let listScroll = 0, listFor = null;
   let listMode = 'all';
   function storyList(pid) {
+    storyPlaces.clearLayers();
     const q = pid === 'quests';
     const p = !q && pid && P[pid];
     const items = q ? D.stories.filter(s => s.quest && onSide(s.side)) : p ? (p.stories || []).map(id => S[id]) : D.stories.filter(s => onSide(s.side));
@@ -465,7 +480,7 @@
     $('#drawer-body').innerHTML = h + '</ul>'; $('#drawer').hidden = false; $('#drawer').scrollTop = 0;
     setHash(selected ? 'person=' + encodeURIComponent(selected) : '');
   }
-  function closeDrawer() { tour = null; $('#drawer').hidden = true; setHash(selected ? 'person=' + encodeURIComponent(selected) : ''); }
+  function closeDrawer() { tour = null; storyPlaces.clearLayers(); $('#drawer').hidden = true; setHash(selected ? 'person=' + encodeURIComponent(selected) : ''); }
   $('#drawer-close').onclick = closeDrawer;
 
   // ---------- photos ----------
