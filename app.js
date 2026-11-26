@@ -265,6 +265,12 @@
   function evLabel(e) { return `${e.t}${e.date ? ' ' + e.date : ''}`; }
   const PREC = { county: 'approximate: county', state: 'approximate: state', country: 'approximate: country' };
 
+  // A street address (house number first) gets a link to see the spot today in Google Maps / Street View.
+  function streetLink(place) {
+    if (!place || !/^\s*\d+[A-Za-z]?\s+[A-Za-z]/.test(place)) return '';
+    const q = encodeURIComponent(place.replace(/,\s*(USA|United States)\s*$/i, ''));
+    return `<br><a class="sv-link" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">📷 See this spot today (Google Maps)</a><br><small>House numbers sometimes changed, and the building may be newer.</small>`;
+  }
   function eventMarker(p, e, num) {
     const approx = PREC[e.prec];
     const sz = num ? 22 : 12;
@@ -272,7 +278,7 @@
       icon: L.divIcon({ className: '', html: `<div class="ev-pin${approx ? ' approx' : ''}" style="width:${sz}px;height:${sz}px${num ? '' : ';background:' + colorOf(p) + (approx ? ';opacity:.6' : '')}">${num || ''}</div>`, iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2], popupAnchor: [0, -6] }),
       title: `${p.name}: ${evLabel(e)}`
     });
-    m.bindPopup(`<h4><a data-person="${p.id}">${esc(p.name)}</a></h4>${esc(evLabel(e))}<br>${esc(e.place)}${e.note ? '<br><i>' + esc(e.note) + '</i>' : ''}${approx ? `<br><small>(${approx})</small>` : ''}`);
+    m.bindPopup(`<h4><a data-person="${p.id}">${esc(p.name)}</a></h4>${esc(evLabel(e))}<br>${esc(e.place)}${e.note ? '<br><i>' + esc(e.note) + '</i>' : ''}${approx ? `<br><small>(${approx})</small>` : ''}${streetLink(e.place)}`);
     return m;
   }
 
@@ -388,7 +394,7 @@
       const evs = sortedEvents(p); let n = 0;
       if (evs.length) h += `<h3>Life events</h3><ul class="evlist">${evs.map(e => {
         const num = e.ll ? ++n : '';
-        return `<li ${e.ll ? `data-ll="${e.ll}"` : ''}><span class="n${e.ll ? '' : ' nomap'}">${num || '–'}</span><span><b>${esc(e.t)}</b> ${esc(e.date)}${e.place ? ', ' + esc(e.place) : ''}${e.with ? ' (to ' + personLink(e.with) + ')' : ''}${e.note ? ' · <i>' + esc(e.note) + '</i>' : ''}${PREC[e.prec] ? ` <span class="approx">(${PREC[e.prec]})</span>` : ''}</span></li>`;
+        return `<li ${e.ll ? `data-ll="${e.ll}"` : ''}><span class="n${e.ll ? '' : ' nomap'}">${num || '–'}</span><span><b>${esc(e.t)}</b> ${esc(e.date)}${e.place ? ', ' + esc(e.place) : ''}${e.with ? ' (to ' + personLink(e.with) + ')' : ''}${e.note ? ' · <i>' + esc(e.note) + '</i>' : ''}${PREC[e.prec] ? ` <span class="approx">(${PREC[e.prec]})</span>` : ''}${streetLink(e.place) ? ` <a class="sv-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.place.replace(/,\s*(USA|United States)\s*$/i, ''))}" target="_blank" rel="noopener" title="See this spot today">📷</a>` : ''}</span></li>`;
       }).join('')}</ul>`;
     }
     if ((p.stories || []).length) h += `<h3>Stories</h3><div class="links">${p.stories.map(id => `<a data-story="${id}">${S[id].quest ? '🧭 ' : ''}${esc(S[id].title)}</a>`).join('')}</div>`;
