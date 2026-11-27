@@ -1748,5 +1748,20 @@
   ],
   "story": "Where the Stones, Bodines and Everharts lie",
   "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/deveney/photo-bridget-burke-deveney-with-anna-deveney-gordon-final.jpg",
+  "caption": "Bridget (Burke) Deveney, left, with her daughter Anna (Deveney) Gordon holding a baby. Cleaned up from a damaged family print; the stain at the top hides Anna's face.",
+  "people": [
+   "K@I500035@",
+   "K@I500030@"
+  ],
+  "place": [
+   39.29,
+   -76.61,
+   "Baltimore, Maryland"
+  ],
+  "story": "Bridget (Burke) Deveney (1858–1929): from Rochdale to Baltimore, and the Grogans of Lancashire",
+  "kind": "portrait"
  }
 ]
