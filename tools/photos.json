@@ -1607,5 +1607,48 @@
    99,
    68
   ]
+ },
+ {
+  "file": "family-tree-audit/documents/boyd/1865-04-11-substitute-enlistment-john-robinson-for-francis-hb-boyd.jpg",
+  "caption": "John Robinson's enlistment as Frank Boyd's substitute, Baltimore, 11 April 1865",
+  "people": [
+   "K@I500039@"
+  ],
+  "place": [
+   39.29,
+   -76.612,
+   "Baltimore, Maryland"
+  ],
+  "story": "The Boyds",
+  "kind": "document"
+ },
+ {
+  "file": "family-tree-audit/documents/boyd/1875-will-francis-hb-boyd-p2.jpg",
+  "caption": "The opening of Frank Boyd's will, proved 22 May 1875",
+  "people": [
+   "K@I500039@",
+   "K@I500040@"
+  ],
+  "place": [
+   39.29,
+   -76.612,
+   "Baltimore, Maryland"
+  ],
+  "story": "The Boyds",
+  "kind": "document"
+ },
+ {
+  "file": "family-tree-audit/documents/raphun/1844-08-02-charles-raphun-death-slip-tubercular-phthisis-monument-cemetery.jpg",
+  "caption": "\"Chas Raphun expired August 2nd 1844 of Tubercular Phthisis, age 28\"",
+  "people": [
+   "K@I500037@"
+  ],
+  "place": [
+   39.98,
+   -75.157,
+   "Monument Cemetery, Philadelphia"
+  ],
+  "story": "Corporal Charles B. Raphun (about 1816–1844)",
+  "kind": "document"
  }
 ]
