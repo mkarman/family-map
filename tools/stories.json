@@ -2031,5 +2031,29 @@
     -90.3243
    ]
   ]
+ },
+ "Edith (Raphun) Callahan and the insurance quarrel (1902–1907)": {
+  "people": [
+   "K@I500028@",
+   "K@I500033@",
+   "K@I500027@"
+  ],
+  "places": [
+   [
+    "903 N. Fulton Avenue, Baltimore: the Colonel's house",
+    39.2995,
+    -76.6455
+   ],
+   [
+    "1822 W. North Avenue, Baltimore: the Callahans' house",
+    39.3095,
+    -76.6475
+   ],
+   [
+    "U.S. Custom House, Baltimore",
+    39.2885,
+    -76.6085
+   ]
+  ]
  }
 }
