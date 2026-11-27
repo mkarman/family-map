@@ -1176,10 +1176,10 @@
   ]
  },
  "Kate Bleakley: the aunt who knew Edgar Allan Poe": {
-  "from": "Kate (Blakely) Henderson (1816–?): the Colonel's aunt who knew Poe",
+  "from": "Kate (Blakely) Henderson (1816–1903): the Colonel's aunt who knew Poe",
   "start": "**The aunt and the poet.**",
   "end": "$",
-  "intro": "**Kate Bleakley** was very likely the older sister of Michael's 4th great-grandmother **Louisa (Blakely) Raphun**. In old age she told a Baltimore newspaper that the young Edgar Allan Poe had written her love letters.",
+  "intro": "**Kate Bleakley** was the older sister of Michael's 4th great-grandmother **Louisa (Blakely) Raphun**. In old age she told a Baltimore newspaper that the young Edgar Allan Poe had written her love letters.",
   "quest": "Michael's 5th great-aunt and the young Edgar Allan Poe",
   "people": [
    "Louisa Blakely",
@@ -1904,19 +1904,6 @@
    ]
   ]
  },
- "Kate (Blakely) Henderson (1816–?): the Colonel's aunt who knew Poe": {
-  "people": [
-   "K@I500038@",
-   "K@I500033@"
-  ],
-  "places": [
-   [
-    "903 N. Fulton Avenue, Baltimore: Kate's home, 1903",
-    39.2995,
-    -76.6455
-   ]
-  ]
- },
  "Frances Rooney (1852–1931): a girl from the frontier": {
   "people": [
    "K@I500032@"
@@ -1988,6 +1975,60 @@
     "Caroline County, Maryland",
     38.87,
     -75.83
+   ]
+  ]
+ },
+ "Kate (Blakely) Henderson (1816–1903): the Colonel's aunt who knew Poe": {
+  "people": [
+   "K@I500038@",
+   "K@I500033@"
+  ],
+  "places": [
+   [
+    "903 N. Fulton Avenue, Baltimore: Kate's home, 1903",
+    39.2995,
+    -76.6455
+   ]
+  ]
+ },
+ "Matthew Blakely (died before 1896): a horse-market tavern keeper": {
+  "people": [
+   "Louisa Blakely",
+   "K@I500038@"
+  ],
+  "places": [
+   [
+    "Marsh Market Space, Baltimore (Blakely tavern)",
+    39.2895,
+    -76.6075
+   ],
+   [
+    "St. Paul's Church, Baltimore (Louisa christened 1827)",
+    39.2925,
+    -76.615
+   ]
+  ]
+ },
+ "George Caldwell Robards (1869–1933): a dry goods salesman in St. Louis": {
+  "people": [
+   "George Caldwell Robards",
+   "Younger Pitts Robards"
+  ],
+  "places": [
+   [
+    "3123 N. Newstead Ave, St. Louis (1903)",
+    38.6575,
+    -90.236
+   ],
+   [
+    "Washington Avenue wholesale district, St. Louis",
+    38.6315,
+    -90.196
+   ],
+   [
+    "Maplewood, Missouri (1909)",
+    38.6126,
+    -90.3243
    ]
   ]
  }

@@ -1650,5 +1650,103 @@
   ],
   "story": "Corporal Charles B. Raphun (about 1816–1844)",
   "kind": "document"
+ },
+ {
+  "file": "family-tree-audit/documents/raphun/portrait-charles-w-raphun.jpg",
+  "caption": "Charles W. Raphun, deputy collector of customs at Baltimore (portrait from the FamilySearch tree)",
+  "people": [
+   "K@I500033@"
+  ],
+  "place": [
+   39.2995,
+   -76.6455,
+   "903 N. Fulton Avenue, Baltimore"
+  ],
+  "story": "Col. Charles W. Raphun (1842–1903)",
+  "kind": "portrait"
+ },
+ {
+  "file": "family-tree-audit/documents/raphun/grave-c-w-raphun-lorraine-park.jpg",
+  "caption": "\"C. W. RAPHUN\": the Colonel's stone at Lorraine Park, with Emma's small marker in front (Find a Grave)",
+  "people": [
+   "K@I500033@"
+  ],
+  "place": [
+   39.3238,
+   -76.742,
+   "Lorraine Park Cemetery, Woodlawn"
+  ],
+  "story": "Col. Charles W. Raphun (1842–1903)",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/raphun/grave-emma-s-raphun-lorraine-park.jpg",
+  "caption": "\"Emma S., Beloved Wife of Chas. W. Raphun\" (Find a Grave)",
+  "people": [
+   "K@I500034@"
+  ],
+  "place": [
+   39.3238,
+   -76.742,
+   "Lorraine Park Cemetery, Woodlawn"
+  ],
+  "story": "Col. Charles W. Raphun (1842–1903)",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/blakely/1903-kate-henderson-death-certificate-crop.jpg",
+  "caption": "Kate Henderson's death certificate, 2 Aug 1903: father Mathew Bleakley, mother Mary Brown",
+  "people": [
+   "K@I500038@"
+  ],
+  "place": [
+   39.2995,
+   -76.6455,
+   "North Fulton Avenue, Baltimore"
+  ],
+  "story": "Kate (Blakely) Henderson (1816–1903): the Colonel's aunt who knew Poe",
+  "kind": "record"
+ },
+ {
+  "file": "family-tree-audit/documents/deveney/grave-bridget-grogan-boffin-island.jpg",
+  "caption": "\"Bridget, wife of Laurence Grogan, native of Boffin Island, Co. Galway, Ireland\", aged 75 (BillionGraves)",
+  "people": [
+   "K@I500035@"
+  ],
+  "place": [
+   39.29,
+   -76.612,
+   "Baltimore (St. Vincent de Paul cemetery, location approximate)"
+  ],
+  "story": "Bridget (Burke) Deveney (1858–1929): from Rochdale to Baltimore, and the Grogans of Lancashire",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/bodine/grave-charles-bodine-cb-1819-mcmakin.jpg",
+  "caption": "Charles Bodine's fieldstone, cut \"1819 / C B\", McMakin Cemetery (Find a Grave)",
+  "people": [
+   "Charles Bodine"
+  ],
+  "place": [
+   37.92,
+   -85.18,
+   "McMakin Cemetery, near Chaplin, Kentucky"
+  ],
+  "story": "Uncle Daniel Everhart and \"the prettiest home in the county\"",
+  "kind": "grave"
+ },
+ {
+  "file": "family-tree-audit/documents/everhart/grave-eliza-everhart-big-spring.jpg",
+  "caption": "\"MOTHER / ELIZA EVERHART / 1811–1882\", Big Spring Cemetery (Find a Grave)",
+  "people": [
+   "Eliza Bodine"
+  ],
+  "place": [
+   37.91,
+   -85.32,
+   "Big Spring Cemetery, Bloomfield, Kentucky"
+  ],
+  "story": "Uncle Daniel Everhart and \"the prettiest home in the county\"",
+  "kind": "grave"
  }
 ]
