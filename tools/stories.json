@@ -513,49 +513,14 @@
    ]
   ]
  },
- "The Pitts family: a young widow and a family still being traced": {
-  "people": [
-   "Cassa Pitts",
-   "Younger R Pitts",
-   "Younger Rogers Pitts",
-   "Elizabeth Rogers",
-   "W@I500064@",
-   "W@I500106@",
-   "W@I500161@",
-   "W@I500162@",
-   "W@I500434@"
-  ],
-  "places": [
-   [
-    "Scott County, Kentucky",
-    38.29,
-    -84.58
-   ],
-   [
-    "Nicholasville, Kentucky",
-    37.881,
-    -84.573
-   ]
-  ]
- },
  "Uncle Daniel Everhart and \"the prettiest home in the county\"": {
   "people": [
-   "Nancy White Everhart",
    "Daniel Everhart",
-   "Eliza Bodine",
-   "Charles Bodine",
-   "Isaac Addison Bodine",
-   "Elizabeth Stone",
-   "W@I500056@",
-   "W@I500065@",
+   "Nancy White Everhart",
    "W@I500109@",
-   "W@I500110@",
+   "W@I500065@",
+   "W@I500056@",
    "W@I500126@",
-   "W@I500127@",
-   "W@I500128@",
-   "W@I500129@",
-   "W@I500174@",
-   "W@I500314@",
    "W@I500539@"
   ],
   "places": [
@@ -1081,28 +1046,6 @@
     "Oldenburg, Germany",
     53.144,
     8.214
-   ]
-  ]
- },
- "Three George Washington Carters": {
-  "people": [
-   "George Washington Carter",
-   "George Washington Carter Jr",
-   "Sarah Catherine Rollison",
-   "K@I500006@",
-   "K@I500007@",
-   "K@I500021@"
-  ],
-  "places": [
-   [
-    "Church Hill, Queen Anne's Co., Maryland",
-    39.142,
-    -75.985
-   ],
-   [
-    "Chestertown, Kent Co., Maryland",
-    39.209,
-    -76.067
    ]
   ]
  },
@@ -2053,6 +1996,218 @@
     "U.S. Custom House, Baltimore",
     39.2885,
     -76.6085
+   ]
+  ]
+ },
+ "Cassandra \"Cassa\" Pitts (1802–1891): a young widow": {
+  "people": [
+   "Cassa Pitts",
+   "W@I500106@"
+  ],
+  "places": [
+   [
+    "Scott County, Kentucky",
+    38.29,
+    -84.58
+   ],
+   [
+    "Nicholasville, Kentucky",
+    37.881,
+    -84.573
+   ]
+  ]
+ },
+ "Younger R. Pitts (died 1822) and the Pitts estate": {
+  "people": [
+   "Younger R Pitts",
+   "W@I500161@"
+  ],
+  "places": [
+   [
+    "Scott County, Kentucky: the Pitts farm",
+    38.29,
+    -84.58
+   ]
+  ]
+ },
+ "Elizabeth Todd (Rogers) Pitts: a girl inside Bryan's Station": {
+  "people": [
+   "Elizabeth Rogers",
+   "W@I500162@"
+  ],
+  "places": [
+   [
+    "Bryan's Station, near Lexington, Kentucky",
+    38.1047,
+    -84.4419
+   ],
+   [
+    "Scott County, Kentucky",
+    38.29,
+    -84.58
+   ]
+  ]
+ },
+ "Rev. Younger Rogers Pitts (1812–1871), Cassa's brother": {
+  "people": [
+   "Younger Rogers Pitts",
+   "W@I500434@"
+  ],
+  "places": [
+   [
+    "Great Crossings, Scott County, Kentucky",
+    38.218,
+    -84.62
+   ]
+  ]
+ },
+ "A Pitts legend we've set aside": {
+  "people": [],
+  "places": [
+   [
+    "Lunenburg County, Virginia",
+    36.95,
+    -78.25
+   ]
+  ],
+  "quest": "Where did the Pitts family come from before Kentucky?"
+ },
+ "Charles Bodine (1780–1819) and Elizabeth (Stone) Bodine: a Nelson County farm with two stills": {
+  "people": [
+   "Charles Bodine",
+   "Elizabeth Stone",
+   "Eliza Bodine",
+   "W@I500127@",
+   "W@I500128@",
+   "W@I500110@"
+  ],
+  "places": [
+   [
+    "Nelson County, Kentucky",
+    37.8,
+    -85.47
+   ]
+  ]
+ },
+ "Davis Stone (1761–1829): a father's will": {
+  "people": [
+   "W@I500174@",
+   "W@I500314@"
+  ],
+  "places": [
+   [
+    "Stone Cemetery near Bloomfield, Nelson County, Kentucky",
+    37.91,
+    -85.32
+   ]
+  ]
+ },
+ "Isaac Bodine: a will that became a family drama": {
+  "people": [
+   "Isaac Addison Bodine",
+   "W@I500129@"
+  ],
+  "places": [
+   [
+    "Nelson County, Kentucky",
+    37.8,
+    -85.47
+   ]
+  ]
+ },
+ "Where the Stones, Bodines and Everharts lie": {
+  "people": [
+   "W@I500174@",
+   "W@I500128@",
+   "W@I500127@",
+   "W@I500129@",
+   "W@I500110@"
+  ],
+  "places": [
+   [
+    "Stone Cemetery near Bloomfield, KY",
+    37.91,
+    -85.32
+   ],
+   [
+    "McMakin Cemetery, near Chaplin, KY",
+    37.89,
+    -85.21
+   ],
+   [
+    "Big Spring Cemetery, Bloomfield, KY",
+    37.91,
+    -85.316
+   ]
+  ]
+ },
+ "George W. Carter Sr. (about 1852–1932) and Kate Rollison": {
+  "people": [
+   "Sarah Catherine Rollison"
+  ],
+  "places": [
+   [
+    "Church Hill, Queen Anne's Co., Maryland",
+    39.142,
+    -75.985
+   ],
+   [
+    "Chester Cemetery, Chestertown, Maryland",
+    39.209,
+    -76.067
+   ]
+  ]
+ },
+ "Levin Ludlow Rollison (about 1819–1871), Kate's father": {
+  "people": [],
+  "places": [
+   [
+    "Caulk's Field, Kent Co., Maryland (1814)",
+    39.175,
+    -76.18
+   ],
+   [
+    "Crumpton, Kent Co., Maryland",
+    39.24,
+    -75.92
+   ]
+  ]
+ },
+ "George W. Carter Jr. (1874–1932), the former sheriff": {
+  "people": [
+   "George Washington Carter Jr",
+   "K@I500021@",
+   "K@I500022@"
+  ],
+  "places": [
+   [
+    "Worton, Kent Co., Maryland",
+    39.288,
+    -76.096
+   ],
+   [
+    "Chester Cemetery, Chestertown",
+    39.209,
+    -76.067
+   ]
+  ]
+ },
+ "George W. Carter III (1916–1985), Michael's grandfather": {
+  "people": [
+   "George Washington Carter",
+   "K@I500006@",
+   "K@I500007@"
+  ],
+  "places": [
+   [
+    "Fairlee, Kent Co., Maryland",
+    39.24,
+    -76.18
+   ],
+   [
+    "Chestertown, Kent Co., Maryland",
+    39.209,
+    -76.067
    ]
   ]
  }
