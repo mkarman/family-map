@@ -91,7 +91,7 @@
     const sw = (c, t) => `<span><i style="background:${c}"></i>${esc(t)}</span>`;
     let h = '';
     if (colorBy === 'side') h = sw(SIDECOL.W, 'White side') + sw(SIDECOL.K, 'Karman side');
-    else if (colorBy === 'line') h = Object.keys(LINECOL).filter(k => side === 'all' || k[0] === side).map(k => sw(LINECOL[k], LINENAME[k] + ' line')).join('');
+    else if (colorBy === 'line') h = Object.keys(LINECOL).filter(k => side === 'all' || k[0] === side[0] && (side.length === 1 || brOfAhn(k[0], +k[1]) === side)).map(k => sw(LINECOL[k], LINENAME[k] + ' line')).join('');
     else h = [1, 2, 3, 4, 5, 6, 8].filter(g => g <= GMAX).map(g => sw(genCol(g), GNAME(g))).concat(GMAX > 8 ? [sw(genCol(10), 'Older')] : []).join('');
     $('#cb-key').innerHTML = h;
   }
@@ -218,7 +218,30 @@
   let side = 'all';
   colorKey();
   const photoSide = ph => (ph.people[0] && P[ph.people[0]] && P[ph.people[0]].side) || (ph.story && S[ph.story].side) || 'W';
-  const onSide = x => side === 'all' || x === side;
+  // side is 'all', a side ('W' White side, 'K' Karman side) or one main branch:
+  // 'W0' White, 'W1' Koetter, 'K0' Karman, 'K1' Carter (the four grandparent couples' lines).
+  const BRANCHES = { W0: 'White', W1: 'Koetter', K0: 'Karman', K1: 'Carter' };
+  const brOfAhn = (sd, a) => a >= 4 ? sd + ((a >> (bits(a) - 1)) & 1) : null;
+  const BR = {};
+  function branchesOf(id, seen) {
+    if (BR[id]) return BR[id];
+    const p = P[id]; if (!p) return [];
+    seen = seen || new Set(); if (seen.has(id)) return []; seen.add(id);
+    let r = [];
+    const own = p.ahn && brOfAhn(p.side, p.ahn);
+    if (own) r = [own];
+    else if (p.ahn) r = [];  // Kristin, Mike, or their parents: in both branches of their side
+    else if (p.sibOf) r = branchesOf(p.sibOf, seen);
+    if (!r.length && !p.ahn) for (const k of ['parents', 'children', 'spouses']) { r = [...new Set((p[k] || []).flatMap(x => branchesOf(x, seen)))]; if (r.length) break; }
+    if (!r.length) r = [p.side + '0', p.side + '1'];
+    return (BR[id] = r);
+  }
+  const onSide = (x, brs) => side === 'all' || x === side || (side.length === 2 && (brs || []).includes(side));
+  const pOn = p => onSide(p.side, branchesOf(p.id));
+  const listOn = ids => { const b = [...new Set(ids.filter(id => P[id]).flatMap(id => branchesOf(id)))]; return b; };
+  const storyBr = s => s._br || (s._br = (() => { const b = listOn(s.people || []); return b.length ? b : [s.side + '0', s.side + '1']; })());
+  const sOn = s => onSide(s.side, storyBr(s));
+  const phOn = ph => { const b = listOn(ph.people || []); return onSide(photoSide(ph), b.length ? b : ph.story && S[ph.story] ? storyBr(S[ph.story]) : []); };
 
   function photoMarker(ph) {
     const sz = 46;
@@ -301,22 +324,22 @@
     const pts = [];
     if (!selected) {
       if (tl == null) {
-        if (show.photos) D.photos.filter(ph => ph.ll && onSide(photoSide(ph))).forEach(ph => layers.photos.addLayer(photoMarker(ph)));
-        if (show.stories) D.stories.filter(s => onSide(s.side) && (!s.quest || show.quests)).forEach(s => storyMarkers(s).forEach(m => layers.stories.addLayer(m)));
+        if (show.photos) D.photos.filter(ph => ph.ll && phOn(ph)).forEach(ph => layers.photos.addLayer(photoMarker(ph)));
+        if (show.stories) D.stories.filter(s => sOn(s) && (!s.quest || show.quests)).forEach(s => storyMarkers(s).forEach(m => layers.stories.addLayer(m)));
         if (show.events) Object.values(P).forEach(p => {
-          if (p.living || !p.ahn || !onSide(p.side)) return;
+          if (p.living || !p.ahn || !pOn(p)) return;
           const b = (p.events || []).find(e => e.ll && /Born|Christened|Baptized/.test(e.t));
           if (b) layers.events.addLayer(eventMarker(p, b, 0));
         });
-        if (show.lines) migrationLayer(MIG.filter(m => onSide(m.side)));
+        if (show.lines) migrationLayer(MIG.filter(m => onSide(m.side, listOn([...m.people]))));
         $('#filter-banner').hidden = true;
       } else {
         let n = 0;
         if (show.events) Object.values(P).forEach(p => {
-          if (p.living || !p.ahn || !onSide(p.side)) return;
+          if (p.living || !p.ahn || !pOn(p)) return;
           (p.events || []).forEach(e => { const y = year(e.date); if (e.ll && y && y > tl - WINDOW && y <= tl) { layers.events.addLayer(eventMarker(p, e, 0)); n++; } });
         });
-        if (show.lines) migrationLayer(MIG.filter(m => onSide(m.side) && m.year && m.year <= tl), m => m.year <= tl - WINDOW);
+        if (show.lines) migrationLayer(MIG.filter(m => onSide(m.side, listOn([...m.people])) && m.year && m.year <= tl), m => m.year <= tl - WINDOW);
         $('#filter-banner').innerHTML = `<span><b>${tl - WINDOW + 1}–${tl}</b>: ${n} life event${n === 1 ? '' : 's'} on the map. Older moves are faded.</span><button id="clear-sel">All years</button>`;
         $('#filter-banner').hidden = false;
         $('#clear-sel').onclick = () => { stopPlay(); setYear(null); };
@@ -360,6 +383,13 @@
   function expandDepth(id, d) { if (d <= 0 || !P[id]) return; expanded.add(id); P[id].parents.forEach(x => expandDepth(x, d - 1)); }
   function renderTree() {
     const r = D.roots;
+    if (BRANCHES[side]) {
+      const a = side[0], b = +side[1], base = 4 + 2 * b;
+      const top = [base, base + 1].map(n => Object.values(P).find(p => p.side === a && p.ahn === n)).filter(Boolean);
+      $('#tree').innerHTML = `<div class="branch-title"><span class="dot" style="background:var(--${a.toLowerCase()})"></span>${BRANCHES[side]} branch</div>` +
+        top.map(p => `<ul class="tree root">${nodeHTML(p.id, 0)}</ul>`).join('');
+      return;
+    }
     $('#tree').innerHTML = (onSide('W') ? `
       <div class="branch-title"><span class="dot" style="background:var(--w)"></span>White side</div>
       <ul class="tree root">${nodeHTML(r.W, 0)}</ul>` : '') + (onSide('K') ? `
@@ -429,7 +459,7 @@
   let tour = null;
   function startTour(pid) {
     const p = pid && P[pid];
-    const list = pid === 'quests' ? D.stories.filter(s => s.quest && onSide(s.side)).map(s => s.id) : (p ? (p.stories || []) : D.stories.filter(s => onSide(s.side)).map(s => s.id));
+    const list = pid === 'quests' ? D.stories.filter(s => s.quest && sOn(s)).map(s => s.id) : (p ? (p.stories || []) : D.stories.filter(s => sOn(s)).map(s => s.id));
     if (!list.length) return;
     tour = { list, i: 0, pid: p ? pid : pid === 'quests' ? 'quests' : null };
     openStory(list[0], null, true);
@@ -477,9 +507,9 @@
     storyPlaces.clearLayers();
     const q = pid === 'quests';
     const p = !q && pid && P[pid];
-    const items = q ? D.stories.filter(s => s.quest && onSide(s.side)) : p ? (p.stories || []).map(id => S[id]) : D.stories.filter(s => onSide(s.side));
+    const items = q ? D.stories.filter(s => s.quest && sOn(s)) : p ? (p.stories || []).map(id => S[id]) : D.stories.filter(s => sOn(s));
     listFor = p ? pid : q ? 'quests' : null; listMode = q ? 'quests' : 'all';
-    let h = `<h2>${q ? '🧭 Side quests' : p ? 'Stories about ' + esc(p.name) : side === 'all' ? 'All stories' : (side === 'W' ? 'White' : 'Karman') + ' side stories'}</h2>`;
+    let h = `<h2>${q ? '🧭 Side quests' : p ? 'Stories about ' + esc(p.name) : side === 'all' ? 'All stories' : BRANCHES[side] ? BRANCHES[side] + ' branch stories' : (side === 'W' ? 'White' : 'Karman') + ' side stories'}</h2>`;
     if (q) h += `<p class="grp">Stories about brothers, aunts, uncles and cousins off the direct line, and family legends. <a class="backlink" data-list="all">See all stories</a></p>`;
     else if (p) h += `<p class="grp"><a class="backlink" data-list="all">See all stories</a></p>`;
     if (items.length > 1) h += `<button class="tour-start" data-tourstart="${q ? 'quests' : p ? pid : ''}">▶ Take the ${q ? 'side-quest' : 'guided'} tour (${items.length} stories)</button>`;
@@ -519,13 +549,13 @@
   });
   $('#btn-all').onclick = () => select(null);
   function fitAll() {
-    const all = [...D.photos.filter(p => p.ll && onSide(photoSide(p))).map(p => p.ll), ...D.stories.filter(s => onSide(s.side)).flatMap(s => s.places.map(p => p.ll))].filter(ll => ll[0] > 20);
+    const all = [...D.photos.filter(p => p.ll && phOn(p)).map(p => p.ll), ...D.stories.filter(s => sOn(s)).flatMap(s => s.places.map(p => p.ll))].filter(ll => ll[0] > 20);
     if (all.length) map.fitBounds(L.latLngBounds(all).pad(0.05), { animate: false });
   }
   document.querySelectorAll('[data-side]').forEach(b => b.onclick = () => {
     side = b.dataset.side; colorKey();
     document.querySelectorAll('[data-side]').forEach(x => x.classList.toggle('on', x === b));
-    if (selected && !onSide(P[selected].side)) select(null); else { renderTree(); render(); }
+    if (selected && !pOn(P[selected])) select(null); else { renderTree(); render(); }
     if (!selected) fitAll();
     if (!$('#drawer').hidden && $('#drawer-body .storylist') && !listFor) storyList();
   });

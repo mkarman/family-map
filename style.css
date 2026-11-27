@@ -114,6 +114,10 @@ ul.tree.root{padding-left:4px}
 .seg+.seg{border-left:1px solid var(--line)}
 .seg.on{background:var(--accent);color:#fff;font-weight:600}
 .seg .dot{width:9px;height:9px;border-radius:50%;border:1px solid #fff}
+.sides.branches{margin-top:6px}
+.sides.branches .seg{font-size:.82rem;padding:6px 4px}
+.sides.branches .lbl{display:flex;align-items:center;padding:0 8px;font-size:.78rem;color:#777;background:#faf6f0;border-right:1px solid var(--line)}
+.sides.branches .lbl+.seg{border-left:none}
 .aka{color:var(--muted);font-size:.8rem}
 .aka-line{font-size:.85rem;margin:0 0 6px;padding:6px 8px;background:#f6ecdc;border-radius:6px}
 .timeline{background:#fff;border-radius:999px;padding:6px 12px;box-shadow:0 1px 6px rgba(0,0,0,.25);display:flex;align-items:center;gap:8px;font-size:.85rem}
